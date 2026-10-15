@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mark Angelo Francisco Lopega - Executive Resume & Portfolio</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#0f172a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Print Specific Styles for A4 Resume */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm;
+      }
+      body {
+        background: white !important;
+        color: #0f172a !important;
+        font-size: 9.5pt;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .page-break-inside-avoid {
+        break-inside: avoid;
+      }
+      .a4-container {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans text-slate-800 antialiased h-full flex flex-col bg-slate-100 selection:bg-blue-500 selection:text-white">
+
+  <!-- TOP EXECUTIVE NAVBAR (NO-PRINT) -->
+  <header class="no-print sticky top-0 z-40 bg-slate-900 text-white border-b border-slate-800 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Brand / Name -->
+        <div class="flex items-center space-x-3">
+          <div id="nav-initials" class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center font-extrabold text-base text-white shadow-md">
+            ML
+          </div>
+          <div>
+            <h1 id="nav-name" class="font-bold text-sm sm:text-base tracking-tight text-white leading-tight">Mark Angelo F. Lopega</h1>
+            <p id="nav-title" class="text-xs text-blue-400 font-medium">Accounting & Finance Professional</p>
+          </div>
+        </div>
+
+        <!-- Desktop Navigation Actions -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <!-- View Mode Switcher -->
+          <div class="bg-slate-800 p-1 rounded-xl flex items-center border border-slate-700">
+            <button id="btn-view-dashboard" onclick="switchView('dashboard')" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all bg-blue-600 text-white shadow-sm">
+              <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
+              <span class="hidden md:inline">Dashboard</span>
+            </button>
+            <button id="btn-view-resume" onclick="switchView('resume')" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all text-slate-300 hover:text-white">
+              <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+              <span class="hidden md:inline">Printable Resume</span>
+            </button>
+          </div>
+
+          <!-- EDIT BUTTON (Primary Requested Feature) -->
+          <button onclick="openEditorModal()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold flex items-center space-x-1.5 shadow-md hover:shadow-blue-500/20 transition-all border border-blue-400/30">
+            <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
+            <span>Edit Data</span>
+          </button>
+
+          <!-- Upload / Load JSON Button -->
+          <label class="cursor-pointer px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-xl text-xs font-medium flex items-center space-x-1.5 transition-colors">
+            <i data-lucide="upload" class="w-3.5 h-3.5 text-emerald-400"></i>
+            <span class="hidden sm:inline">Upload JSON</span>
+            <input type="file" id="json-file-input" accept=".json" class="hidden" onchange="handleFileUpload(event)">
+          </label>
+
+          <!-- Print / Save PDF -->
+          <button onclick="window.print()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-xl text-xs font-medium flex items-center space-x-1.5 transition-colors">
+            <i data-lucide="printer" class="w-3.5 h-3.5 text-blue-400"></i>
+            <span class="hidden lg:inline">Print / PDF</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none no-print"></div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ================================================================= -->
+    <!-- VIEW 1: EXECUTIVE PORTFOLIO DASHBOARD VIEW                        -->
+    <!-- ================================================================= -->
+    <div id="dashboard-view" class="space-y-6">
+
+      <!-- HERO BANNER & CONTACT SUMMARY -->
+      <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 rounded-2xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-blue-600/10 blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row justify-between lg:items-center gap-6">
+          <div class="space-y-3 max-w-3xl">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs font-semibold uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Available for Roles</span>
+            </div>
+            <h2 id="dash-hero-name" class="text-2xl sm:text-4xl font-extrabold tracking-tight"></h2>
+            <p id="dash-hero-title" class="text-blue-200 font-medium text-sm sm:text-base"></p>
+            <p id="dash-hero-summary" class="text-slate-300 text-xs sm:text-sm leading-relaxed pt-1"></p>
+          </div>
+
+          <!-- Contact Details Cards -->
+          <div id="dash-contact-box" class="flex flex-col sm:flex-row lg:flex-col gap-2.5 min-w-[240px]">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Target Roles Tags -->
+        <div class="mt-6 pt-5 border-t border-slate-700/60 flex flex-wrap items-center gap-2">
+          <span class="text-xs text-slate-400 font-medium mr-1">Target Roles:</span>
+          <div id="dash-target-roles" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+
+      <!-- DYNAMIC METRICS CARDS -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="dash-metrics-grid">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- MAIN CONTENT DASHBOARD GRID -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- LEFT COLUMN: Filters & Skills (4 cols) -->
+        <div class="lg:col-span-4 space-y-6">
+
+          <!-- INTERACTIVE SKILL FILTER SEARCH -->
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                <i data-lucide="filter" class="w-4 h-4 text-blue-600"></i>
+                Filter Work Experience
+              </h3>
+              <button onclick="resetSkillFilter()" id="btn-reset-filter" class="hidden text-xs text-blue-600 font-semibold hover:underline">Reset</button>
+            </div>
+            
+            <div class="relative">
+              <input type="text" id="skill-search" onkeyup="filterBySearch()" placeholder="Type skill or ERP (e.g., SAP, QAD, GIT)..." class="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all">
+              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
+            </div>
+
+            <div>
+              <span class="text-xs font-medium text-slate-400 block mb-2">Quick Filter Badges:</span>
+              <div id="dash-quick-tags" class="flex flex-wrap gap-1.5"></div>
+            </div>
+          </div>
+
+          <!-- SKILLS & COMPETENCIES CARD -->
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2 border-b border-slate-100 pb-3">
+              <i data-lucide="cpu" class="w-4 h-4 text-blue-600"></i>
+              Technical Skills & Systems
+            </h3>
+
+            <!-- Accounting & Finance Skills -->
+            <div class="space-y-2">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Accounting & Finance</span>
+              <div id="dash-skills-acct" class="flex flex-wrap gap-1.5"></div>
+            </div>
+
+            <!-- Enterprise Systems -->
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Enterprise Systems & ERP</span>
+              <div id="dash-skills-erp" class="flex flex-wrap gap-1.5"></div>
+            </div>
+
+            <!-- Productivity -->
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Office & Document Control</span>
+              <div id="dash-skills-office" class="flex flex-wrap gap-1.5"></div>
+            </div>
+          </div>
+
+          <!-- EDUCATION CARD -->
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2 border-b border-slate-100 pb-3">
+              <i data-lucide="graduation-cap" class="w-4 h-4 text-blue-600"></i>
+              Education
+            </h3>
+            <div id="dash-education-list" class="space-y-4"></div>
+          </div>
+
+          <!-- TRAININGS & ORGANIZATIONS -->
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2 border-b border-slate-100 pb-3">
+              <i data-lucide="award" class="w-4 h-4 text-blue-600"></i>
+              Professional Development
+            </h3>
+            <div id="dash-trainings-list" class="space-y-2"></div>
+            
+            <div class="pt-3 border-t border-slate-100">
+              <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">Affiliations</span>
+              <div id="dash-orgs-list"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Work Experience Timeline (8 cols) -->
+        <div class="lg:col-span-8 space-y-6">
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="font-bold text-slate-900 text-base flex items-center gap-2">
+                  <i data-lucide="briefcase" class="w-5 h-5 text-blue-600"></i>
+                  Work Experience History
+                </h3>
+                <p class="text-xs text-slate-500 mt-0.5">High-volume transaction records, billing, and system workflows</p>
+              </div>
+              <span id="dash-role-count" class="text-xs text-slate-400 font-medium"></span>
+            </div>
+
+            <!-- Job Cards Container -->
+            <div id="dash-jobs-container" class="space-y-5"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 2: PIXEL-PERFECT A4 PRINTABLE RESUME VIEW                     -->
+    <!-- ================================================================= -->
+    <div id="resume-view" class="hidden">
+      
+      <div class="a4-container bg-white text-slate-900 max-w-[210mm] mx-auto p-[12mm_15mm] border border-slate-300 shadow-2xl rounded-sm text-[10pt] leading-normal font-sans space-y-4">
+        
+        <!-- RESUME HEADER -->
+        <header class="border-b-2 border-slate-900 pb-3">
+          <h1 id="res-name" class="text-2xl font-bold uppercase tracking-tight text-slate-900"></h1>
+          <p id="res-title" class="text-xs font-bold text-blue-700 uppercase tracking-wide mt-0.5"></p>
+          <div id="res-contact" class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[9pt] text-slate-600"></div>
+        </header>
+
+        <!-- SUMMARY -->
+        <section class="space-y-1">
+          <h2 class="text-[10pt] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">Professional Summary</h2>
+          <p id="res-summary" class="text-[9.5pt] text-slate-700 leading-relaxed"></p>
+        </section>
+
+        <!-- TECHNICAL SKILLS MATRIX -->
+        <section class="space-y-1.5">
+          <h2 class="text-[10pt] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">Technical Skills & Enterprise Systems</h2>
+          <div id="res-skills-matrix" class="grid grid-cols-12 gap-2 text-[9pt]"></div>
+        </section>
+
+        <!-- WORK EXPERIENCE -->
+        <section class="space-y-3">
+          <h2 class="text-[10pt] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">Work Experience</h2>
+          <div id="res-jobs-container" class="space-y-3"></div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="space-y-1 page-break-inside-avoid">
+          <h2 class="text-[10pt] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">Education & Academic Achievements</h2>
+          <div id="res-edu-container" class="space-y-1.5"></div>
+        </section>
+
+        <!-- TRAININGS & ORGANIZATIONS -->
+        <section class="grid grid-cols-2 gap-4 pt-1 page-break-inside-avoid">
+          <div>
+            <h2 class="text-[9.5pt] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">Trainings & Certifications</h2>
+            <ul id="res-trainings-list" class="list-disc pl-4 text-[8.5pt] text-slate-700 space-y-0.5 mt-1"></ul>
+          </div>
+          <div>
+            <h2 class="text-[9.5pt] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">Affiliations & Highlights</h2>
+            <div id="res-orgs-container" class="mt-1"></div>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- MODAL: DUAL-TAB EDITOR (VISUAL FORM & RAW JSON CODE EDITOR)        -->
+  <!-- ================================================================= -->
+  <div id="editor-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-6 hidden no-print">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Modal Header & Tab Navigation -->
+      <div class="p-4 bg-slate-900 border-b border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center justify-center">
+            <i data-lucide="sliders" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white text-base">Portfolio & Resume Editor</h3>
+            <p class="text-xs text-slate-400">Modify fields visually or edit raw JSON</p>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex items-center space-x-2 bg-slate-950 p-1 rounded-xl border border-slate-800">
+          <button id="tab-btn-visual" onclick="switchEditorTab('visual')" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all bg-blue-600 text-white">
+            <i data-lucide="form-input" class="w-3.5 h-3.5"></i>
+            <span>Visual Form</span>
+          </button>
+          <button id="tab-btn-json" onclick="switchEditorTab('json')" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all text-slate-400 hover:text-white">
+            <i data-lucide="code" class="w-3.5 h-3.5"></i>
+            <span>Raw JSON</span>
+          </button>
+        </div>
+
+        <button onclick="closeEditorModal()" class="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-6 overflow-y-auto flex-grow space-y-6 bg-slate-900 text-slate-200">
+        
+        <!-- TAB 1: VISUAL FORM EDITOR -->
+        <div id="editor-tab-visual" class="space-y-6">
+          
+          <!-- Personal Information Section -->
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-4">
+            <h4 class="font-bold text-sm text-blue-400 uppercase tracking-wider flex items-center gap-2">
+              <i data-lucide="user" class="w-4 h-4"></i>
+              Personal Information
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div>
+                <label class="block text-slate-400 mb-1">Full Name</label>
+                <input type="text" id="form-full-name" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1">Professional Title</label>
+                <input type="text" id="form-title" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1">Email Address</label>
+                <input type="text" id="form-email" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1">Phone Number</label>
+                <input type="text" id="form-phone" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1">Address / Location</label>
+                <input type="text" id="form-address" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1">LinkedIn URL</label>
+                <input type="text" id="form-linkedin" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
+              </div>
+            </div>
+          </div>
+
+          <!-- Professional Summary Section -->
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+            <h4 class="font-bold text-sm text-blue-400 uppercase tracking-wider flex items-center gap-2">
+              <i data-lucide="file-text" class="w-4 h-4"></i>
+              Professional Summary
+            </h4>
+            <div>
+              <textarea id="form-summary" rows="4" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2.5 text-xs text-white leading-relaxed focus:border-blue-500 focus:outline-none"></textarea>
+            </div>
+          </div>
+
+          <!-- Quick Skills Modifier -->
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+            <h4 class="font-bold text-sm text-blue-400 uppercase tracking-wider flex items-center gap-2">
+              <i data-lucide="cpu" class="w-4 h-4"></i>
+              Technical Skills (Comma Separated)
+            </h4>
+            <div class="space-y-3 text-xs">
+              <div>
+                <label class="block text-slate-400 mb-1">Accounting & Finance Skills</label>
+                <input type="text" id="form-skills-acct" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1">Enterprise Systems / ERPs</label>
+                <input type="text" id="form-skills-erp" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TAB 2: RAW JSON CODE EDITOR -->
+        <div id="editor-tab-json" class="hidden space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-mono">Live JSON Textarea (Supports Paste & Editing)</span>
+            <span id="json-status-tag" class="text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Valid JSON</span>
+          </div>
+          <textarea id="json-code-textarea" onkeyup="validateJsonTextarea()" rows="16" class="w-full bg-slate-950 font-mono text-xs text-emerald-400 border border-slate-800 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-blue-500 leading-relaxed"></textarea>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-slate-950 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center space-x-2">
+          <!-- Download JSON -->
+          <button onclick="downloadJsonFile()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition-colors border border-slate-700">
+            <i data-lucide="download" class="w-3.5 h-3.5 text-blue-400"></i>
+            <span>Download JSON</span>
+          </button>
+          
+          <!-- Reset to Default -->
+          <button onclick="resetToDefaultData()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-rose-400 rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition-colors border border-slate-700">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            <span>Reset Data</span>
+          </button>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <button onclick="closeEditorModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition-colors">
+            Cancel
+          </button>
+          <button onclick="saveEditorChanges()" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold shadow-lg shadow-blue-600/30 transition-all flex items-center space-x-1.5">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Apply Changes</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT CONTROLLERS & DATA LOGIC -->
+  <script>
+    // MARK ANGELO FRANCISCO LOPEGA UPDATED DEFAULT JSON DATA PAYLOAD
+    const defaultResumeData = {
+      "personal_information": {
+        "full_name": "Mark Angelo Francisco Lopega",
+        "address": "[City/Municipality, Province]",
+        "phone": "09083107185",
+        "email": "markangelofranciscolopega@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/mark-angelo-lopega",
+        "portfolio": "portfolio.lopegaworks.com"
+      },
+      "professional_summary": {
+        "title": "Accounting and Finance Professional",
+        "summary": "Accounting and finance graduate with hands-on experience in accounts payable, general ledger entries, distributor billing, invoice verification, document control, and financial transaction processing. Experienced in using QAD ERP, SAP, and legacy general ledger systems, with exposure to Goods in Transit accounting, freight transactions, expanded withholding tax, and accounting adjustments. Detail-oriented and capable of handling high-volume transactions while supporting accurate financial records and reporting.",
+        "target_positions": [
+          "Accounts Payable Associate",
+          "Accounting Assistant",
+          "Accounting Staff",
+          "General Accounting Staff",
+          "Finance Associate"
+        ]
+      },
+      "work_experience": [
+        {
+          "company": "Terumo Philippines Corporation",
+          "work_location": "Laguna Technopark, Biñan, Laguna",
+          "position": "Financial Accounting - Accounts Payable",
+          "employment_period": {
+            "start": "May 2026",
+            "end": "[Last Month and Year]"
+          },
+          "employment_type": "Full-Time",
+          "department": "Financial Accounting",
+          "responsibilities": [
+            "Processed accounts payable transactions involving raw materials, freight, and Goods in Transit (GIT), supporting accurate expense recognition and financial reporting.",
+            "Prepared and maintained accounting entries in the legacy General Ledger (GenLedger) system and QAD ERP, supporting the recording and processing of accounts payable transactions.",
+            "Handled GIT accounting activities, including transaction setup, reversals, price adjustments, and corrections involving raw-material deliveries and discrepancies across accounting periods.",
+            "Verified raw-material and freight supporting documents, including Sales Invoices (SI), Delivery Receipts (DR), Receiving and Delivery Reports (RDR), and Credit Memos, checking quantities, prices, billed amounts, and transaction classifications.",
+            "Reviewed applicable expanded withholding tax (EWT) treatment and identified documentation, billing, and timing discrepancies requiring clarification or accounting adjustments."
+          ],
+          "systems_and_tools": ["QAD ERP", "GenLedger", "Microsoft Excel"],
+          "skills_demonstrated": ["Accounts Payable Processing", "General Ledger Entries", "Goods in Transit Accounting", "Raw-Material Accounting", "Freight Accounting", "Invoice Verification", "Expanded Withholding Tax", "Accounting Reversals and Adjustments"],
+          "achievements": []
+        },
+        {
+          "company": "San Miguel Logistics / SMILSI",
+          "work_location": "Santa Rosa, Laguna",
+          "position": "Liquidation Clerk / Logistics Administrative Staff",
+          "employment_period": {
+            "start": "[Start Month and Year]",
+            "end": "[End Month and Year]"
+          },
+          "employment_type": "Project-Based / Agency-Hired",
+          "responsibilities": [
+            "Reviewed customer billing documents associated with Alfamart and San Miguel operations to support accurate billing and liquidation.",
+            "Encoded invoice information and processed liquidation documents for accounting and operational records.",
+            "Digitized, organized, and maintained transaction documents to support document retrieval and processing.",
+            "Checked supporting documentation and billing details to identify discrepancies requiring correction or clarification."
+          ],
+          "systems_and_tools": ["Document Management Systems", "Excel"],
+          "skills_demonstrated": ["Billing Verification", "Invoice Encoding", "Liquidation Processing", "Document Digitization", "Records Management"]
+        },
+        {
+          "company": "Alfamart Trading Philippines",
+          "work_location": "Batino Industrial Park, Calamba, Laguna",
+          "position": "Accounting Clerk",
+          "employment_period": {
+            "start": "[Start Month and Year]",
+            "end": "July 2025"
+          },
+          "employment_type": "Agency-Hired",
+          "responsibilities": [
+            "Processed distributor billings, including DSA and outright transactions involving suppliers such as Nestle, Magnolia, URC, and Selecta.",
+            "Encoded and checked billing information in SAP, verifying transaction totals and comparing prices against supporting documents.",
+            "Prepared weekly transmittals and monitored accounting documents to support timely processing and proper recordkeeping.",
+            "Monitored supporting documentation and coordinated document-related requirements involving manpower, trucking, and security operations.",
+            "Assisted with fund disbursement documentation and other accounting administrative activities."
+          ],
+          "systems_and_tools": ["SAP", "Microsoft Excel"],
+          "skills_demonstrated": ["Distributor Billing", "SAP Transaction Processing", "Price Verification", "Document Monitoring", "Weekly Transmittal Preparation"]
+        },
+        {
+          "company": "NC David Construction & Trucking",
+          "work_location": "Limay, Bataan",
+          "position": "Office Staff / Administrative Intern",
+          "employment_period": {
+            "start": "February 2024",
+            "end": "June 2024"
+          },
+          "employment_type": "Internship",
+          "responsibilities": [
+            "Organized, sorted, distributed, and maintained office documents and business records.",
+            "Encoded receipts and other transaction-related information to support accurate recordkeeping.",
+            "Assisted with office administrative processes and document workflows to improve organization and efficiency.",
+            "Supported daily office operations through document monitoring, information encoding, and records management."
+          ],
+          "systems_and_tools": ["Office Systems", "Excel"],
+          "skills_demonstrated": ["Office Administration", "Document Control", "Records Management", "Data Encoding"]
+        }
+      ],
+      "education": [
+        {
+          "institution": "Limay Polytechnic College",
+          "degree": "Bachelor of Science in Business Administration",
+          "major": "Financial Management",
+          "graduation_year": 2024
+        },
+        {
+          "institution": "Limay Senior High School",
+          "qualification": "Senior High School",
+          "strand_or_specialization": "Electronic Products Assembly and Servicing",
+          "graduation_year": "2020"
+        }
+      ],
+      "technical_skills": {
+        "accounting_and_finance": [
+          "Accounts Payable",
+          "General Ledger Entries",
+          "Invoice Processing & Verification",
+          "Distributor Billing",
+          "Goods in Transit Accounting",
+          "Freight Transaction Processing",
+          "Expense Recognition",
+          "Accounting Reversals & Adjustments",
+          "Expanded Withholding Tax",
+          "Billing Reconciliation"
+        ],
+        "enterprise_systems": [
+          "QAD ERP",
+          "SAP",
+          "GenLedger"
+        ],
+        "office_productivity": [
+          "Microsoft Excel",
+          "Microsoft Office",
+          "Data Encoding",
+          "Document Management",
+          "Records Management"
+        ]
+      },
+      "professional_development": [
+        { "training": "Excel Excellence", "provider": "[Provider]", "year": "[Year]" },
+        { "training": "Digital Marketing", "provider": "[Provider]", "year": "[Year]" },
+        { "training": "Microsoft Office Productivity", "provider": "[Provider]", "year": "[Year]" },
+        { "training": "Financial Security and Investment", "provider": "[Provider]", "year": "[Year]" },
+        { "training": "Workplace Communication", "provider": "[Provider]", "year": "[Year]" }
+      ],
+      "organizational_involvement": [
+        {
+          "organization": "Junior Financial Executives Institute of the Philippines (JFINEX)",
+          "membership": "Member"
+        }
+      ],
+      "additional_information": {
+        "academic_highlights": [],
+        "career_objective": "To build a long-term career in accounting and finance, strengthen technical accounting and ERP competencies, and progress toward positions involving greater financial responsibility and management."
+      }
+    };
+
+    // ACTIVE STATE HOLDER
+    let currentData = JSON.parse(JSON.stringify(defaultResumeData));
+
+    // INITIALIZATION ON DOM LOAD
+    document.addEventListener('DOMContentLoaded', () => {
+      renderApp();
+    });
+
+    // RENDER ALL VIEWS ACCORDING TO CURRENT DATA
+    function renderApp() {
+      renderNavbar();
+      renderDashboardHero();
+      renderMetrics();
+      renderSkillsAndFilters();
+      renderEducationAndTrainings();
+      renderWorkExperience();
+
+      // Render Printable Resume View
+      renderPrintableResume();
+
+      // Re-create Lucide icons
+      lucide.createIcons();
+    }
+
+    // NAVBAR
+    function renderNavbar() {
+      const name = currentData.personal_information?.full_name || "Mark Angelo Lopega";
+      const title = currentData.professional_summary?.title || "Finance Professional";
+      
+      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2);
+      document.getElementById('nav-initials').textContent = initials;
+      document.getElementById('nav-name').textContent = name;
+      document.getElementById('nav-title').textContent = title;
+    }
+
+    // DASHBOARD HERO
+    function renderDashboardHero() {
+      const info = currentData.personal_information || {};
+      const summary = currentData.professional_summary || {};
+
+      document.getElementById('dash-hero-name').textContent = info.full_name || "Name Not Specified";
+      document.getElementById('dash-hero-title').textContent = summary.title || "";
+      document.getElementById('dash-hero-summary').textContent = summary.summary || "";
+
+      // Contact Cards
+      const contactBox = document.getElementById('dash-contact-box');
+      contactBox.innerHTML = `
+        <a href="mailto:${info.email || ''}" class="flex items-center space-x-2.5 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-md transition-all">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span class="truncate">${info.email || 'Email'}</span>
+        </a>
+        <div class="flex items-center space-x-2.5 px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300 text-xs font-medium">
+          <i data-lucide="phone" class="w-4 h-4 text-blue-400"></i>
+          <span>${info.phone || 'Phone'}</span>
+        </div>
+        <div class="flex items-center space-x-2.5 px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300 text-xs font-medium">
+          <i data-lucide="globe" class="w-4 h-4 text-blue-400"></i>
+          <span>${info.portfolio || 'Portfolio'}</span>
+        </div>
+        <div class="flex items-center space-x-2.5 px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300 text-xs font-medium">
+          <i data-lucide="linkedin" class="w-4 h-4 text-blue-400"></i>
+          <span class="truncate">${info.linkedin || 'LinkedIn'}</span>
+        </div>
+      `;
+
+      // Target Roles
+      const targetRolesContainer = document.getElementById('dash-target-roles');
+      const roles = summary.target_positions || [];
+      targetRolesContainer.innerHTML = roles.map(r => `
+        <span class="px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700 text-xs text-blue-300 font-medium">${r}</span>
+      `).join('');
+    }
+
+    // DASHBOARD METRICS
+    function renderMetrics() {
+      const grid = document.getElementById('dash-metrics-grid');
+      const jobs = currentData.work_experience || [];
+      const erpList = currentData.technical_skills?.enterprise_systems || ["QAD ERP", "SAP"];
+
+      grid.innerHTML = `
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Core AP Focus</span>
+            <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+              <i data-lucide="calculator" class="w-4 h-4"></i>
+            </div>
+          </div>
+          <div class="mt-2 flex items-baseline">
+            <span class="text-xl font-bold text-slate-900">AP & GIT</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Raw materials & freight workflows</p>
+        </div>
+
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">ERP Competency</span>
+            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+              <i data-lucide="database" class="w-4 h-4"></i>
+            </div>
+          </div>
+          <div class="mt-2">
+            <span class="text-xl font-bold text-slate-900">${erpList.slice(0, 2).join(' & ')}</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Plus GenLedger & Excel</p>
+        </div>
+
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Career Roles</span>
+            <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+              <i data-lucide="briefcase" class="w-4 h-4"></i>
+            </div>
+          </div>
+          <div class="mt-2">
+            <span class="text-2xl font-bold text-slate-900">${jobs.length} Positions</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">Recorded experience</p>
+        </div>
+
+        <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Education Track</span>
+            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+            </div>
+          </div>
+          <div class="mt-2">
+            <span class="text-lg font-bold text-slate-900">BSBA Financial Mgt.</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">ICT Senior High Specialization</p>
+        </div>
+      `;
+    }
+
+    // SKILLS & QUICK TAGS
+    function renderSkillsAndFilters() {
+      const skills = currentData.technical_skills || {};
+      
+      // Quick Filter Tags
+      const tagsContainer = document.getElementById('dash-quick-tags');
+      const allSkills = [
+        ...(skills.enterprise_systems || []),
+        "Accounts Payable", "Goods in Transit", "Excel"
+      ];
+      tagsContainer.innerHTML = allSkills.slice(0, 5).map(s => `
+        <button onclick="applySkillFilter('${s}')" class="filter-tag px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 text-xs font-medium border border-slate-200 transition-colors">${s}</button>
+      `).join('');
+
+      // Skill categories
+      document.getElementById('dash-skills-acct').innerHTML = (skills.accounting_and_finance || []).map(s => `
+        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">${s}</span>
+      `).join('');
+
+      document.getElementById('dash-skills-erp').innerHTML = (skills.enterprise_systems || []).map(s => `
+        <span class="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-semibold border border-blue-200">${s}</span>
+      `).join('');
+
+      document.getElementById('dash-skills-office').innerHTML = (skills.office_productivity || []).map(s => `
+        <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">${s}</span>
+      `).join('');
+    }
+
+    // EDUCATION & TRAININGS
+    function renderEducationAndTrainings() {
+      const eduList = currentData.education || [];
+      const trainList = currentData.professional_development || [];
+      const orgList = currentData.organizational_involvement || [];
+
+      // Education
+      document.getElementById('dash-education-list').innerHTML = eduList.map((edu, idx) => `
+        <div>
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-bold text-slate-900">${edu.institution}</h4>
+            <span class="text-xs text-slate-500 font-medium">${edu.graduation_year || ''}</span>
+          </div>
+          <p class="text-xs text-blue-600 font-medium mt-0.5">${edu.degree || edu.qualification || ''}</p>
+          ${edu.major ? `<p class="text-xs text-slate-500">Major in ${edu.major}</p>` : ''}
+          ${edu.strand_or_specialization ? `<p class="text-xs text-slate-500">Strand: ${edu.strand_or_specialization}</p>` : ''}
+        </div>
+      `).join('');
+
+      // Trainings
+      document.getElementById('dash-trainings-list').innerHTML = trainList.map(t => `
+        <div class="flex items-center gap-2 text-xs text-slate-700">
+          <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-blue-600 flex-shrink-0"></i>
+          <span class="font-medium">${t.training}</span>
+        </div>
+      `).join('');
+
+      // Orgs
+      document.getElementById('dash-orgs-list').innerHTML = orgList.map(o => `
+        <p class="text-xs font-bold text-slate-800">${o.organization}</p>
+        <p class="text-xs text-slate-500">${o.membership}</p>
+      `).join('');
+    }
+
+    // WORK EXPERIENCE CARDS
+    function renderWorkExperience() {
+      const jobs = currentData.work_experience || [];
+      const container = document.getElementById('dash-jobs-container');
+      document.getElementById('dash-role-count').textContent = `${jobs.length} Roles Recorded`;
+
+      container.innerHTML = jobs.map((job, idx) => {
+        const start = job.employment_period?.start || '';
+        const end = job.employment_period?.end || '';
+        const periodStr = `${start} – ${end}`;
+        const searchTokens = [...(job.systems_and_tools || []), ...(job.skills_demonstrated || []), job.company, job.position, job.work_location || ''].join(' ').toLowerCase();
+
+        return `
+          <div class="job-card transition-all duration-200 rounded-xl p-4 sm:p-5 border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-blue-200 hover:shadow-md" data-skills="${searchTokens}">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200/60 pb-3">
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm sm:text-base">${job.position}</h4>
+                <p class="text-xs font-semibold text-blue-600">${job.company} ${job.work_location ? `<span class="text-slate-500 font-normal">(${job.work_location})</span>` : ''}</p>
+              </div>
+              <div class="sm:text-right">
+                <span class="inline-block px-2.5 py-1 rounded-md ${idx === 0 ? 'bg-blue-100 text-blue-800' : 'bg-slate-200 text-slate-700'} font-semibold text-xs">${periodStr}</span>
+                ${job.employment_type ? `<p class="text-[11px] text-slate-400 mt-0.5">${job.employment_type}</p>` : ''}
+              </div>
+            </div>
+
+            <ul class="mt-3 space-y-2 text-xs text-slate-700 list-disc pl-4 leading-relaxed">
+              ${(job.responsibilities || []).map(r => `<li>${r}</li>`).join('')}
+            </ul>
+
+            <div class="mt-4 pt-3 border-t border-slate-200/60 flex flex-wrap gap-1.5">
+              ${(job.systems_and_tools || []).map(sys => `<span class="px-2 py-0.5 bg-blue-50 text-blue-700 text-[11px] font-semibold rounded border border-blue-100">${sys}</span>`).join('')}
+              ${(job.skills_demonstrated || []).slice(0, 5).map(sk => `<span class="px-2 py-0.5 bg-slate-200 text-slate-700 text-[11px] font-medium rounded">${sk}</span>`).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // RENDER A4 PRINTABLE RESUME VIEW
+    function renderPrintableResume() {
+      const info = currentData.personal_information || {};
+      const summary = currentData.professional_summary || {};
+      const skills = currentData.technical_skills || {};
+      const jobs = currentData.work_experience || [];
+      const eduList = currentData.education || [];
+      const trainList = currentData.professional_development || [];
+      const orgList = currentData.organizational_involvement || [];
+
+      document.getElementById('res-name').textContent = info.full_name || '';
+      document.getElementById('res-title').textContent = summary.title || '';
+
+      document.getElementById('res-contact').innerHTML = `
+        <span>📞 ${info.phone || ''}</span>
+        <span>✉️ ${info.email || ''}</span>
+        <span>🔗 ${info.linkedin || ''}</span>
+        <span>🌐 ${info.portfolio || ''}</span>
+      `;
+
+      document.getElementById('res-summary').textContent = summary.summary || '';
+
+      // Skills Matrix
+      document.getElementById('res-skills-matrix').innerHTML = `
+        <div class="col-span-3 font-semibold text-slate-800">Accounting & Finance:</div>
+        <div class="col-span-9 text-slate-700">${(skills.accounting_and_finance || []).join(', ')}</div>
+
+        <div class="col-span-3 font-semibold text-slate-800">Enterprise Systems:</div>
+        <div class="col-span-9 text-slate-700">${(skills.enterprise_systems || []).join(', ')}</div>
+
+        <div class="col-span-3 font-semibold text-slate-800">Office & Tools:</div>
+        <div class="col-span-9 text-slate-700">${(skills.office_productivity || []).join(', ')}</div>
+      `;
+
+      // Jobs
+      document.getElementById('res-jobs-container').innerHTML = jobs.map(job => `
+        <div class="space-y-1 page-break-inside-avoid">
+          <div class="flex justify-between items-baseline font-bold text-slate-900 text-[9.5pt]">
+            <span>${job.position}</span>
+            <span>${job.employment_period?.start || ''} – ${job.employment_period?.end || ''}</span>
+          </div>
+          <div class="flex justify-between items-baseline text-blue-800 font-semibold text-[9pt]">
+            <span>${job.company} ${job.work_location ? `(${job.work_location})` : ''}</span>
+            <span class="text-slate-500 font-normal italic">${job.employment_type || ''}</span>
+          </div>
+          <ul class="list-disc pl-4 text-[9pt] text-slate-700 space-y-0.5 leading-tight">
+            ${(job.responsibilities || []).map(r => `<li>${r}</li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+
+      // Education
+      document.getElementById('res-edu-container').innerHTML = eduList.map((edu, idx) => `
+        <div class="flex justify-between text-[9.5pt]">
+          <div>
+            <span class="font-bold text-slate-900">${edu.institution}</span> — 
+            <span class="text-slate-700">${edu.degree || edu.qualification || ''} ${edu.major ? `(${edu.major})` : ''} ${edu.strand_or_specialization ? `(${edu.strand_or_specialization})` : ''}</span>
+          </div>
+          <span class="font-semibold text-slate-800">${edu.graduation_year || ''}</span>
+        </div>
+      `).join('');
+
+      // Trainings
+      document.getElementById('res-trainings-list').innerHTML = trainList.map(t => `
+        <li>${t.training}</li>
+      `).join('');
+
+      // Orgs
+      document.getElementById('res-orgs-container').innerHTML = orgList.map(o => `
+        <p class="text-[8.5pt] text-slate-800 font-bold">${o.organization}</p>
+        <p class="text-[8.5pt] text-slate-600">${o.membership}</p>
+      `).join('');
+    }
+
+    // VIEW SWITCHER (Dashboard vs Resume)
+    function switchView(mode) {
+      const dashboard = document.getElementById('dashboard-view');
+      const resume = document.getElementById('resume-view');
+      const btnDash = document.getElementById('btn-view-dashboard');
+      const btnRes = document.getElementById('btn-view-resume');
+
+      if (mode === 'dashboard') {
+        dashboard.classList.remove('hidden');
+        resume.classList.add('hidden');
+
+        btnDash.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all bg-blue-600 text-white shadow-sm";
+        btnRes.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all text-slate-300 hover:text-white";
+      } else {
+        dashboard.classList.add('hidden');
+        resume.classList.remove('hidden');
+
+        btnRes.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all bg-blue-600 text-white shadow-sm";
+        btnDash.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all text-slate-300 hover:text-white";
+      }
+    }
+
+    // SEARCH & FILTER LOGIC
+    function applySkillFilter(keyword) {
+      document.getElementById('skill-search').value = keyword;
+      filterBySearch();
+    }
+
+    function filterBySearch() {
+      const query = document.getElementById('skill-search').value.toLowerCase().trim();
+      const jobCards = document.querySelectorAll('.job-card');
+      const resetBtn = document.getElementById('btn-reset-filter');
+
+      if (query.length > 0) {
+        resetBtn.classList.remove('hidden');
+      } else {
+        resetBtn.classList.add('hidden');
+      }
+
+      jobCards.forEach(card => {
+        const skills = card.getAttribute('data-skills').toLowerCase();
+        const text = card.textContent.toLowerCase();
+
+        if (skills.includes(query) || text.includes(query)) {
+          card.style.display = 'block';
+          card.classList.add('ring-2', 'ring-blue-500/50', 'bg-blue-50/30');
+        } else {
+          card.style.display = 'none';
+          card.classList.remove('ring-2', 'ring-blue-500/50', 'bg-blue-50/30');
+        }
+      });
+    }
+
+    function resetSkillFilter() {
+      document.getElementById('skill-search').value = '';
+      filterBySearch();
+    }
+
+    // EDITOR MODAL CONTROLLERS
+    function openEditorModal() {
+      populateVisualForm();
+      populateJsonTextarea();
+      document.getElementById('editor-modal').classList.remove('hidden');
+    }
+
+    function closeEditorModal() {
+      document.getElementById('editor-modal').classList.add('hidden');
+    }
+
+    function switchEditorTab(tab) {
+      const visualTab = document.getElementById('editor-tab-visual');
+      const jsonTab = document.getElementById('editor-tab-json');
+      const btnVisual = document.getElementById('tab-btn-visual');
+      const btnJson = document.getElementById('tab-btn-json');
+
+      if (tab === 'visual') {
+        visualTab.classList.remove('hidden');
+        jsonTab.classList.add('hidden');
+        btnVisual.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all bg-blue-600 text-white";
+        btnJson.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all text-slate-400 hover:text-white";
+      } else {
+        visualTab.classList.add('hidden');
+        jsonTab.classList.remove('hidden');
+        btnJson.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all bg-blue-600 text-white";
+        btnVisual.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all text-slate-400 hover:text-white";
+      }
+    }
+
+    function populateVisualForm() {
+      const info = currentData.personal_information || {};
+      const summary = currentData.professional_summary || {};
+      const skills = currentData.technical_skills || {};
+
+      document.getElementById('form-full-name').value = info.full_name || '';
+      document.getElementById('form-title').value = summary.title || '';
+      document.getElementById('form-email').value = info.email || '';
+      document.getElementById('form-phone').value = info.phone || '';
+      document.getElementById('form-address').value = info.address || '';
+      document.getElementById('form-linkedin').value = info.linkedin || '';
+      document.getElementById('form-summary').value = summary.summary || '';
+
+      document.getElementById('form-skills-acct').value = (skills.accounting_and_finance || []).join(', ');
+      document.getElementById('form-skills-erp').value = (skills.enterprise_systems || []).join(', ');
+    }
+
+    function populateJsonTextarea() {
+      document.getElementById('json-code-textarea').value = JSON.stringify(currentData, null, 2);
+      validateJsonTextarea();
+    }
+
+    function validateJsonTextarea() {
+      const code = document.getElementById('json-code-textarea').value;
+      const statusTag = document.getElementById('json-status-tag');
+      try {
+        JSON.parse(code);
+        statusTag.textContent = "Valid JSON";
+        statusTag.className = "text-xs px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+        return true;
+      } catch (err) {
+        statusTag.textContent = "Syntax Error";
+        statusTag.className = "text-xs px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/30";
+        return false;
+      }
+    }
+
+    function saveEditorChanges() {
+      const activeTabIsVisual = !document.getElementById('editor-tab-visual').classList.contains('hidden');
+
+      if (activeTabIsVisual) {
+        // Collect from visual form
+        if (!currentData.personal_information) currentData.personal_information = {};
+        if (!currentData.professional_summary) currentData.professional_summary = {};
+        if (!currentData.technical_skills) currentData.technical_skills = {};
+
+        currentData.personal_information.full_name = document.getElementById('form-full-name').value;
+        currentData.professional_summary.title = document.getElementById('form-title').value;
+        currentData.personal_information.email = document.getElementById('form-email').value;
+        currentData.personal_information.phone = document.getElementById('form-phone').value;
+        currentData.personal_information.address = document.getElementById('form-address').value;
+        currentData.personal_information.linkedin = document.getElementById('form-linkedin').value;
+        currentData.professional_summary.summary = document.getElementById('form-summary').value;
+
+        const acctSkills = document.getElementById('form-skills-acct').value.split(',').map(s => s.trim()).filter(Boolean);
+        const erpSkills = document.getElementById('form-skills-erp').value.split(',').map(s => s.trim()).filter(Boolean);
+
+        currentData.technical_skills.accounting_and_finance = acctSkills;
+        currentData.technical_skills.enterprise_systems = erpSkills;
+
+        renderApp();
+        showToast("Changes updated successfully!", "success");
+        closeEditorModal();
+      } else {
+        // Collect from JSON Code editor
+        const code = document.getElementById('json-code-textarea').value;
+        try {
+          const parsed = JSON.parse(code);
+          currentData = parsed;
+          renderApp();
+          showToast("JSON updated and re-rendered!", "success");
+          closeEditorModal();
+        } catch (err) {
+          showToast("Cannot apply: Invalid JSON syntax.", "error");
+        }
+      }
+    }
+
+    // FILE UPLOAD HANDLER
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          currentData = parsed;
+          renderApp();
+          showToast(`Loaded ${file.name} successfully!`, "success");
+        } catch (err) {
+          showToast("Failed to parse uploaded JSON file.", "error");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // DOWNLOAD JSON FILE
+    function downloadJsonFile() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentData, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `${(currentData.personal_information?.full_name || 'resume').toLowerCase().replace(/\s+/g, '_')}_profile.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast("JSON file download started.", "info");
+    }
+
+    // RESET DATA
+    function resetToDefaultData() {
+      currentData = JSON.parse(JSON.stringify(defaultResumeData));
+      renderApp();
+      populateVisualForm();
+      populateJsonTextarea();
+      showToast("Reset to default profile data.", "info");
+    }
+
+    // TOAST NOTIFICATIONS
+    function showToast(message, type = "info") {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+
+      let bgClass = "bg-slate-900 border-slate-700 text-white";
+      if (type === "success") bgClass = "bg-emerald-950 border-emerald-800 text-emerald-200";
+      if (type === "error") bgClass = "bg-rose-950 border-rose-800 text-rose-200";
+
+      toast.className = `px-4 py-3 rounded-xl border shadow-xl text-xs font-semibold flex items-center space-x-2 transition-all transform translate-y-2 opacity-0 pointer-events-auto ${bgClass}`;
+      toast.innerHTML = `<span>${message}</span>`;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 50);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
