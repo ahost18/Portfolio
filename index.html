@@ -165,9 +165,7 @@
           </div>
 
           <!-- Contact Details Cards -->
-          <div id="dash-contact-box" class="flex flex-col sm:flex-row lg:flex-col gap-2.5 min-w-[240px]">
-            <!-- Dynamically populated -->
-          </div>
+          <div id="dash-contact-box" class="flex flex-col sm:flex-row lg:flex-col gap-2.5 min-w-[240px]"></div>
         </div>
 
         <p id="dash-hero-summary" class="text-slate-300 text-xs sm:text-sm leading-relaxed pt-4 max-w-4xl"></p>
@@ -411,6 +409,20 @@
               </select>
             </div>
 
+            <!-- Local Image File Upload Input -->
+            <div class="bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-2 text-xs">
+              <label class="block font-semibold text-white">Upload Headshot Image from Device</label>
+              <div class="flex items-center gap-3">
+                <label class="cursor-pointer px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold transition-colors flex items-center space-x-1.5 shadow-sm">
+                  <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                  <span>Choose Image File</span>
+                  <input type="file" id="local-image-input" accept="image/*" class="hidden" onchange="handleLocalImageUpload(event)">
+                </label>
+                <span id="upload-file-status" class="text-slate-400 italic">No custom image uploaded yet</span>
+              </div>
+              <input type="hidden" id="form-photo-url">
+            </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div>
                 <label class="block text-slate-400 mb-1">Full Name</label>
@@ -419,10 +431,6 @@
               <div>
                 <label class="block text-slate-400 mb-1">Professional Title</label>
                 <input type="text" id="form-title" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
-              </div>
-              <div class="sm:col-span-2">
-                <label class="block text-slate-400 mb-1">CV Photo / Headshot URL</label>
-                <input type="text" id="form-photo" placeholder="https://images.unsplash.com/... or relative path" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
               </div>
               <div>
                 <label class="block text-slate-400 mb-1">Email Address</label>
@@ -706,11 +714,9 @@
       document.getElementById('dash-hero-title').textContent = summary.title || "";
       document.getElementById('dash-hero-summary').textContent = summary.summary || "";
       
-      // Conditional Avatar Render with Size Scaling
       const avatarWrapper = document.getElementById('dash-avatar-wrapper');
       const avatarEl = document.getElementById('dash-hero-avatar');
 
-      // Define size classes for dashboard
       const dashSizes = {
         'small': 'w-14 h-14 sm:w-16 sm:h-16',
         'medium': 'w-20 h-20 sm:w-24 sm:h-24',
@@ -923,11 +929,9 @@
       document.getElementById('res-name').textContent = info.full_name || '';
       document.getElementById('res-title').textContent = summary.title || '';
 
-      // Conditional Resume Photo Render with Size Scaling
       const resAvatarWrapper = document.getElementById('res-avatar-wrapper');
       const resAvatarEl = document.getElementById('res-avatar');
 
-      // Define size classes for A4 resume
       const resSizes = {
         'small': 'w-12 h-16 sm:w-14 sm:h-18',
         'medium': 'w-16 h-20 sm:w-20 sm:h-24',
@@ -1057,6 +1061,21 @@
       filterBySearch();
     }
 
+    // LOCAL IMAGE UPLOAD HANDLER
+    function handleLocalImageUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('form-photo-url').value = e.target.result;
+        document.getElementById('upload-file-status').textContent = `Loaded: ${file.name}`;
+        document.getElementById('upload-file-status').className = "text-emerald-400 font-medium";
+        showToast("Image loaded from device successfully!", "success");
+      };
+      reader.readAsDataURL(file);
+    }
+
     // EDITOR MODAL CONTROLLERS
     function openEditorModal() {
       populateVisualForm();
@@ -1096,7 +1115,16 @@
       document.getElementById('form-title').value = summary.title || '';
       document.getElementById('form-photo-enabled').checked = !!info.photo_enabled;
       document.getElementById('form-photo-size').value = info.photo_size || 'medium';
-      document.getElementById('form-photo').value = info.photo_url || '';
+      document.getElementById('form-photo-url').value = info.photo_url || '';
+      
+      if (info.photo_url && info.photo_url.startsWith('data:image')) {
+        document.getElementById('upload-file-status').textContent = "Custom local image loaded";
+        document.getElementById('upload-file-status').className = "text-emerald-400 font-medium";
+      } else {
+        document.getElementById('upload-file-status').textContent = "No custom image uploaded yet";
+        document.getElementById('upload-file-status').className = "text-slate-400 italic";
+      }
+
       document.getElementById('form-email').value = info.email || '';
       document.getElementById('form-phone').value = info.phone || '';
       document.getElementById('form-address').value = info.address || '';
@@ -1139,7 +1167,12 @@
         currentData.professional_summary.title = document.getElementById('form-title').value;
         currentData.personal_information.photo_enabled = document.getElementById('form-photo-enabled').checked;
         currentData.personal_information.photo_size = document.getElementById('form-photo-size').value;
-        currentData.personal_information.photo_url = document.getElementById('form-photo').value;
+        
+        const customPhotoUrl = document.getElementById('form-photo-url').value;
+        if (customPhotoUrl) {
+          currentData.personal_information.photo_url = customPhotoUrl;
+        }
+
         currentData.personal_information.email = document.getElementById('form-email').value;
         currentData.personal_information.phone = document.getElementById('form-phone').value;
         currentData.personal_information.address = document.getElementById('form-address').value;
