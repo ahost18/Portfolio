@@ -92,7 +92,6 @@
   <header class="no-print sticky top-0 z-40 bg-slate-900 text-white border-b border-slate-800 shadow-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <!-- Empty placeholder or custom text can go here if needed -->
         <div></div>
 
         <!-- Desktop Navigation Actions -->
@@ -109,7 +108,7 @@
             </button>
           </div>
 
-          <!-- EDIT BUTTON (Primary Requested Feature) -->
+          <!-- EDIT BUTTON -->
           <button onclick="openEditorModal()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-semibold flex items-center space-x-1.5 shadow-md hover:shadow-blue-500/20 transition-all border border-blue-400/30">
             <i data-lucide="edit-3" class="w-3.5 h-3.5"></i>
             <span>Edit Data</span>
@@ -148,14 +147,21 @@
         <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-blue-600/10 blur-3xl pointer-events-none"></div>
 
         <div class="relative z-10 flex flex-col lg:flex-row justify-between lg:items-center gap-6">
-          <div class="space-y-3 max-w-3xl">
-            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs font-semibold uppercase tracking-wider">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Available for Roles</span>
+          
+          <!-- Profile Info with Optional Headshot Avatar -->
+          <div class="flex items-start sm:items-center gap-5">
+            <div id="dash-avatar-wrapper" class="relative flex-shrink-0 hidden">
+              <img id="dash-hero-avatar" src="" alt="Profile Headshot" class="rounded-2xl object-cover border-2 border-blue-400/40 shadow-lg bg-slate-800">
+              <div class="absolute -bottom-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-2 border-slate-900 flex items-center justify-center" title="Active"></div>
             </div>
-            <h2 id="dash-hero-name" class="text-2xl sm:text-4xl font-extrabold tracking-tight"></h2>
-            <p id="dash-hero-title" class="text-blue-200 font-medium text-sm sm:text-base"></p>
-            <p id="dash-hero-summary" class="text-slate-300 text-xs sm:text-sm leading-relaxed pt-1"></p>
+            <div class="space-y-2">
+              <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30 text-xs font-semibold uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Available for Roles</span>
+              </div>
+              <h2 id="dash-hero-name" class="text-2xl sm:text-3xl font-extrabold tracking-tight"></h2>
+              <p id="dash-hero-title" class="text-blue-200 font-medium text-sm sm:text-base"></p>
+            </div>
           </div>
 
           <!-- Contact Details Cards -->
@@ -163,6 +169,8 @@
             <!-- Dynamically populated -->
           </div>
         </div>
+
+        <p id="dash-hero-summary" class="text-slate-300 text-xs sm:text-sm leading-relaxed pt-4 max-w-4xl"></p>
 
         <!-- Target Roles Tags -->
         <div class="mt-6 pt-5 border-t border-slate-700/60 flex flex-wrap items-center gap-2">
@@ -172,9 +180,7 @@
       </div>
 
       <!-- DYNAMIC METRICS CARDS -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="dash-metrics-grid">
-        <!-- Rendered via JS -->
-      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="dash-metrics-grid"></div>
 
       <!-- MAIN CONTENT DASHBOARD GRID -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -210,19 +216,16 @@
               Technical Skills & Systems
             </h3>
 
-            <!-- Accounting & Finance Skills -->
             <div class="space-y-2">
               <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Accounting & Finance</span>
               <div id="dash-skills-acct" class="flex flex-wrap gap-1.5"></div>
             </div>
 
-            <!-- Enterprise Systems -->
             <div class="space-y-2 pt-2 border-t border-slate-100">
               <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Enterprise Systems & ERP</span>
               <div id="dash-skills-erp" class="flex flex-wrap gap-1.5"></div>
             </div>
 
-            <!-- Productivity -->
             <div class="space-y-2 pt-2 border-t border-slate-100">
               <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider block">Office & Document Control</span>
               <div id="dash-skills-office" class="flex flex-wrap gap-1.5"></div>
@@ -268,7 +271,6 @@
               <span id="dash-role-count" class="text-xs text-slate-400 font-medium"></span>
             </div>
 
-            <!-- Job Cards Container -->
             <div id="dash-jobs-container" class="space-y-5"></div>
           </div>
         </div>
@@ -284,11 +286,16 @@
       
       <div class="a4-container bg-white text-slate-900 max-w-[210mm] mx-auto p-[12mm_15mm] border border-slate-300 shadow-2xl rounded-sm text-[10pt] leading-normal font-sans space-y-4">
         
-        <!-- RESUME HEADER -->
-        <header class="border-b-2 border-slate-900 pb-3">
-          <h1 id="res-name" class="text-2xl font-bold uppercase tracking-tight text-slate-900"></h1>
-          <p id="res-title" class="text-xs font-bold text-blue-700 uppercase tracking-wide mt-0.5"></p>
-          <div id="res-contact" class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[9pt] text-slate-600"></div>
+        <!-- RESUME HEADER WITH CONDITIONAL HEADSHOT -->
+        <header class="border-b-2 border-slate-900 pb-3 flex items-center justify-between gap-4">
+          <div class="space-y-1">
+            <h1 id="res-name" class="text-2xl font-bold uppercase tracking-tight text-slate-900"></h1>
+            <p id="res-title" class="text-xs font-bold text-blue-700 uppercase tracking-wide mt-0.5"></p>
+            <div id="res-contact" class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-[9pt] text-slate-600"></div>
+          </div>
+          <div id="res-avatar-wrapper" class="flex-shrink-0 hidden">
+            <img id="res-avatar" src="" alt="Resume Headshot" class="object-cover rounded border border-slate-400 shadow-sm bg-slate-100">
+          </div>
         </header>
 
         <!-- SUMMARY -->
@@ -378,8 +385,32 @@
           <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-4">
             <h4 class="font-bold text-sm text-blue-400 uppercase tracking-wider flex items-center gap-2">
               <i data-lucide="user" class="w-4 h-4"></i>
-              Personal Information
+              Personal Information & Photo Controls
             </h4>
+            
+            <!-- Photo Enable Switch -->
+            <div class="flex items-center justify-between bg-slate-900 p-3 rounded-lg border border-slate-800">
+              <div>
+                <span class="block text-xs font-semibold text-white">Show CV Photo / Headshot</span>
+                <span class="text-[11px] text-slate-400">Toggles headshot visibility on dashboard and printable resume</span>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="form-photo-enabled" class="sr-only peer">
+                <div class="w-9 h-5 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+              </label>
+            </div>
+
+            <!-- Photo Size Level Selector -->
+            <div class="bg-slate-900 p-3 rounded-lg border border-slate-800 space-y-2 text-xs">
+              <label class="block font-semibold text-white">CV Photo Size Level</label>
+              <select id="form-photo-size" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
+                <option value="small">Small (Compact)</option>
+                <option value="medium">Medium (Standard)</option>
+                <option value="large">Large (Prominent)</option>
+                <option value="xlarge">Extra Large (Maximum)</option>
+              </select>
+            </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div>
                 <label class="block text-slate-400 mb-1">Full Name</label>
@@ -388,6 +419,10 @@
               <div>
                 <label class="block text-slate-400 mb-1">Professional Title</label>
                 <input type="text" id="form-title" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
+              </div>
+              <div class="sm:col-span-2">
+                <label class="block text-slate-400 mb-1">CV Photo / Headshot URL</label>
+                <input type="text" id="form-photo" placeholder="https://images.unsplash.com/... or relative path" class="w-full bg-slate-900 border border-slate-800 rounded-lg p-2 text-white focus:border-blue-500 focus:outline-none">
               </div>
               <div>
                 <label class="block text-slate-400 mb-1">Email Address</label>
@@ -482,7 +517,7 @@
 
   <!-- JAVASCRIPT CONTROLLERS & DATA LOGIC -->
   <script>
-    // MARK ANGELO FRANCISCO LOPEGA UPDATED DEFAULT JSON DATA PAYLOAD
+    // MARK ANGELO FRANCISCO LOPEGA DEFAULT JSON DATA PAYLOAD
     const defaultResumeData = {
       "personal_information": {
         "full_name": "Mark Angelo Francisco Lopega",
@@ -490,7 +525,10 @@
         "phone": "09083107185",
         "email": "markangelofranciscolopega@gmail.com",
         "linkedin": "https://www.linkedin.com/in/mark-angelo-lopega",
-        "portfolio": "portfolio.lopegaworks.com"
+        "portfolio": "portfolio.lopegaworks.com",
+        "photo_enabled": false,
+        "photo_size": "medium",
+        "photo_url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop"
       },
       "professional_summary": {
         "title": "Accounting and Finance Professional",
@@ -655,11 +693,7 @@
       renderSkillsAndFilters();
       renderEducationAndTrainings();
       renderWorkExperience();
-
-      // Render Printable Resume View
       renderPrintableResume();
-
-      // Re-create Lucide icons
       lucide.createIcons();
     }
 
@@ -671,6 +705,26 @@
       document.getElementById('dash-hero-name').textContent = info.full_name || "Name Not Specified";
       document.getElementById('dash-hero-title').textContent = summary.title || "";
       document.getElementById('dash-hero-summary').textContent = summary.summary || "";
+      
+      // Conditional Avatar Render with Size Scaling
+      const avatarWrapper = document.getElementById('dash-avatar-wrapper');
+      const avatarEl = document.getElementById('dash-hero-avatar');
+
+      // Define size classes for dashboard
+      const dashSizes = {
+        'small': 'w-14 h-14 sm:w-16 sm:h-16',
+        'medium': 'w-20 h-20 sm:w-24 sm:h-24',
+        'large': 'w-28 h-28 sm:w-32 sm:h-32',
+        'xlarge': 'w-36 h-36 sm:w-40 sm:h-40'
+      };
+
+      if (info.photo_enabled && info.photo_url) {
+        avatarEl.src = info.photo_url;
+        avatarEl.className = `rounded-2xl object-cover border-2 border-blue-400/40 shadow-lg bg-slate-850 ${dashSizes[info.photo_size] || dashSizes['medium']}`;
+        avatarWrapper.classList.remove('hidden');
+      } else {
+        avatarWrapper.classList.add('hidden');
+      }
 
       // Contact Cards
       const contactBox = document.getElementById('dash-contact-box');
@@ -765,8 +819,6 @@
     // SKILLS & QUICK TAGS
     function renderSkillsAndFilters() {
       const skills = currentData.technical_skills || {};
-      
-      // Quick Filter Tags
       const tagsContainer = document.getElementById('dash-quick-tags');
       const allSkills = [
         ...(skills.enterprise_systems || []),
@@ -776,7 +828,6 @@
         <button onclick="applySkillFilter('${s}')" class="filter-tag px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 text-xs font-medium border border-slate-200 transition-colors">${s}</button>
       `).join('');
 
-      // Skill categories
       document.getElementById('dash-skills-acct').innerHTML = (skills.accounting_and_finance || []).map(s => `
         <span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">${s}</span>
       `).join('');
@@ -796,7 +847,6 @@
       const trainList = currentData.professional_development || [];
       const orgList = currentData.organizational_involvement || [];
 
-      // Education
       document.getElementById('dash-education-list').innerHTML = eduList.map((edu, idx) => `
         <div>
           <div class="flex items-center justify-between">
@@ -809,7 +859,6 @@
         </div>
       `).join('');
 
-      // Trainings
       document.getElementById('dash-trainings-list').innerHTML = trainList.map(t => `
         <div class="flex items-center gap-2 text-xs text-slate-700">
           <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-blue-600 flex-shrink-0"></i>
@@ -817,7 +866,6 @@
         </div>
       `).join('');
 
-      // Orgs
       document.getElementById('dash-orgs-list').innerHTML = orgList.map(o => `
         <p class="text-xs font-bold text-slate-800">${o.organization}</p>
         <p class="text-xs text-slate-500">${o.membership}</p>
@@ -875,6 +923,26 @@
       document.getElementById('res-name').textContent = info.full_name || '';
       document.getElementById('res-title').textContent = summary.title || '';
 
+      // Conditional Resume Photo Render with Size Scaling
+      const resAvatarWrapper = document.getElementById('res-avatar-wrapper');
+      const resAvatarEl = document.getElementById('res-avatar');
+
+      // Define size classes for A4 resume
+      const resSizes = {
+        'small': 'w-12 h-16 sm:w-14 sm:h-18',
+        'medium': 'w-16 h-20 sm:w-20 sm:h-24',
+        'large': 'w-24 h-30 sm:w-28 sm:h-36',
+        'xlarge': 'w-32 h-40 sm:w-36 sm:h-48'
+      };
+
+      if (info.photo_enabled && info.photo_url) {
+        resAvatarEl.src = info.photo_url;
+        resAvatarEl.className = `object-cover rounded border border-slate-400 shadow-sm bg-slate-100 ${resSizes[info.photo_size] || resSizes['medium']}`;
+        resAvatarWrapper.classList.remove('hidden');
+      } else {
+        resAvatarWrapper.classList.add('hidden');
+      }
+
       document.getElementById('res-contact').innerHTML = `
         <span>📞 ${info.phone || ''}</span>
         <span>✉️ ${info.email || ''}</span>
@@ -884,7 +952,6 @@
 
       document.getElementById('res-summary').textContent = summary.summary || '';
 
-      // Skills Matrix
       document.getElementById('res-skills-matrix').innerHTML = `
         <div class="col-span-3 font-semibold text-slate-800">Accounting & Finance:</div>
         <div class="col-span-9 text-slate-700">${(skills.accounting_and_finance || []).join(', ')}</div>
@@ -896,7 +963,6 @@
         <div class="col-span-9 text-slate-700">${(skills.office_productivity || []).join(', ')}</div>
       `;
 
-      // Jobs
       document.getElementById('res-jobs-container').innerHTML = jobs.map(job => `
         <div class="space-y-1 page-break-inside-avoid">
           <div class="flex justify-between items-baseline font-bold text-slate-900 text-[9.5pt]">
@@ -913,7 +979,6 @@
         </div>
       `).join('');
 
-      // Education
       document.getElementById('res-edu-container').innerHTML = eduList.map((edu, idx) => `
         <div class="flex justify-between text-[9.5pt]">
           <div>
@@ -924,19 +989,17 @@
         </div>
       `).join('');
 
-      // Trainings
       document.getElementById('res-trainings-list').innerHTML = trainList.map(t => `
         <li>${t.training}</li>
       `).join('');
 
-      // Orgs
       document.getElementById('res-orgs-container').innerHTML = orgList.map(o => `
         <p class="text-[8.5pt] text-slate-800 font-bold">${o.organization}</p>
         <p class="text-[8.5pt] text-slate-600">${o.membership}</p>
       `).join('');
     }
 
-    // VIEW SWITCHER (Dashboard vs Resume)
+    // VIEW SWITCHER
     function switchView(mode) {
       const dashboard = document.getElementById('dashboard-view');
       const resume = document.getElementById('resume-view');
@@ -1031,6 +1094,9 @@
 
       document.getElementById('form-full-name').value = info.full_name || '';
       document.getElementById('form-title').value = summary.title || '';
+      document.getElementById('form-photo-enabled').checked = !!info.photo_enabled;
+      document.getElementById('form-photo-size').value = info.photo_size || 'medium';
+      document.getElementById('form-photo').value = info.photo_url || '';
       document.getElementById('form-email').value = info.email || '';
       document.getElementById('form-phone').value = info.phone || '';
       document.getElementById('form-address').value = info.address || '';
@@ -1065,13 +1131,15 @@
       const activeTabIsVisual = !document.getElementById('editor-tab-visual').classList.contains('hidden');
 
       if (activeTabIsVisual) {
-        // Collect from visual form
         if (!currentData.personal_information) currentData.personal_information = {};
         if (!currentData.professional_summary) currentData.professional_summary = {};
         if (!currentData.technical_skills) currentData.technical_skills = {};
 
         currentData.personal_information.full_name = document.getElementById('form-full-name').value;
         currentData.professional_summary.title = document.getElementById('form-title').value;
+        currentData.personal_information.photo_enabled = document.getElementById('form-photo-enabled').checked;
+        currentData.personal_information.photo_size = document.getElementById('form-photo-size').value;
+        currentData.personal_information.photo_url = document.getElementById('form-photo').value;
         currentData.personal_information.email = document.getElementById('form-email').value;
         currentData.personal_information.phone = document.getElementById('form-phone').value;
         currentData.personal_information.address = document.getElementById('form-address').value;
@@ -1088,7 +1156,6 @@
         showToast("Changes updated successfully!", "success");
         closeEditorModal();
       } else {
-        // Collect from JSON Code editor
         const code = document.getElementById('json-code-textarea').value;
         try {
           const parsed = JSON.parse(code);
