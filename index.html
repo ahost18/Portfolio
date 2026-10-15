@@ -92,16 +92,8 @@
   <header class="no-print sticky top-0 z-40 bg-slate-900 text-white border-b border-slate-800 shadow-xl">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <!-- Brand / Name -->
-        <div class="flex items-center space-x-3">
-          <div id="nav-initials" class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center font-extrabold text-base text-white shadow-md">
-            ML
-          </div>
-          <div>
-            <h1 id="nav-name" class="font-bold text-sm sm:text-base tracking-tight text-white leading-tight">Mark Angelo F. Lopega</h1>
-            <p id="nav-title" class="text-xs text-blue-400 font-medium">Accounting & Finance Professional</p>
-          </div>
-        </div>
+        <!-- Empty placeholder or custom text can go here if needed -->
+        <div></div>
 
         <!-- Desktop Navigation Actions -->
         <div class="flex items-center space-x-2 sm:space-x-3">
@@ -658,7 +650,6 @@
 
     // RENDER ALL VIEWS ACCORDING TO CURRENT DATA
     function renderApp() {
-      renderNavbar();
       renderDashboardHero();
       renderMetrics();
       renderSkillsAndFilters();
@@ -670,17 +661,6 @@
 
       // Re-create Lucide icons
       lucide.createIcons();
-    }
-
-    // NAVBAR
-    function renderNavbar() {
-      const name = currentData.personal_information?.full_name || "Mark Angelo Lopega";
-      const title = currentData.professional_summary?.title || "Finance Professional";
-      
-      const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2);
-      document.getElementById('nav-initials').textContent = initials;
-      document.getElementById('nav-name').textContent = name;
-      document.getElementById('nav-title').textContent = title;
     }
 
     // DASHBOARD HERO
