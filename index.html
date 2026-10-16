@@ -338,6 +338,24 @@
 
   </main>
 
+  <!-- EXPERIENCE DETAIL MODAL (DASHBOARD ONLY; HIDDEN IN PRINT) -->
+  <div id="experience-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-slate-950/75 p-0 sm:p-5 backdrop-blur-sm no-print" role="dialog" aria-modal="true" aria-labelledby="experience-modal-title" tabindex="-1" onclick="handleExperienceBackdropClick(event)">
+    <div class="experience-modal-panel relative flex max-h-[100dvh] w-full max-w-3xl flex-col overflow-hidden bg-white shadow-2xl sm:max-h-[92vh] sm:rounded-2xl sm:border sm:border-slate-200" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between border-b border-slate-200 bg-white px-4 py-3 sm:px-6">
+        <div class="flex min-w-0 items-center gap-2.5">
+          <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600"><i data-lucide="briefcase-business" class="h-4.5 w-4.5"></i></div>
+          <div class="min-w-0"><p class="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-600">Experience overview</p><p class="truncate text-xs text-slate-500">Additional context beyond the resume</p></div>
+        </div>
+        <button id="experience-modal-close" type="button" onclick="closeExperienceModal()" class="ml-3 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500" aria-label="Close experience details"><i data-lucide="x" class="h-5 w-5"></i></button>
+      </div>
+      <div id="experience-modal-content" class="min-h-0 flex-1 overflow-y-auto overscroll-contain bg-slate-50"></div>
+      <div class="flex items-center justify-between gap-3 border-t border-slate-200 bg-white px-4 py-3 sm:px-6">
+        <p class="text-[10px] leading-relaxed text-slate-400">Portfolio-only details · Not included in the printable resume</p>
+        <button type="button" onclick="closeExperienceModal()" class="flex-shrink-0 rounded-xl bg-slate-900 px-4 py-2 text-xs font-semibold text-white transition hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Close overview</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ================================================================= -->
   <!-- MODAL: DUAL-TAB EDITOR (VISUAL FORM & RAW JSON CODE EDITOR)        -->
   <!-- ================================================================= -->
@@ -569,7 +587,20 @@
           ],
           "systems_and_tools": ["QAD ERP", "GenLedger", "Microsoft Excel"],
           "skills_demonstrated": ["Accounts Payable Processing", "General Ledger Entries", "Goods in Transit Accounting", "Raw-Material Accounting", "Freight Accounting", "Invoice Verification", "Expanded Withholding Tax", "Accounting Reversals and Adjustments"],
-          "achievements": []
+          "achievements": [],
+          "portfolio_details": {
+            "image_url": "",
+            "image_alt": "Terumo Philippines Corporation workplace",
+            "overview": "My work sits where supplier documents, physical deliveries, and accounting records meet. I process accounts payable transactions for raw materials and freight, work with QAD ERP and GenLedger, and help address Goods in Transit (GIT) entries when transaction details, timing, or supporting documents need correction.",
+            "additional_exposure": "I have also supported inventory checks involving warehouse, production, and facilities, following the verification procedures used by each department.",
+            "reflection": "This role has helped me connect what I studied in Financial Management with actual accounting workflows. I have learned that an accounting entry is only as reliable as the documents and checks behind it. I enjoy comparing amounts, tracing discrepancies, and figuring out what needs clarification because it helps me understand the reason behind a transaction, not just how to encode it.",
+            "takeaways": [
+              "Connect invoices, receiving documents, and ERP entries before treating a transaction as complete.",
+              "Pay attention to transaction timing, reversals, and supporting evidence when correcting GIT records.",
+              "Keep building accounting judgment, ERP fluency, and a broader understanding of financial reporting."
+            ],
+            "image_note": "Add a company exterior, workplace, or approved non-confidential photo here later."
+          }
         },
         {
           "company": "San Miguel Logistics / SMILSI",
@@ -587,7 +618,20 @@
             "Checked supporting documentation and billing details to identify discrepancies requiring correction or clarification."
           ],
           "systems_and_tools": ["Document Management Systems", "Excel"],
-          "skills_demonstrated": ["Billing Verification", "Invoice Encoding", "Liquidation Processing", "Document Digitization", "Records Management"]
+          "skills_demonstrated": ["Billing Verification", "Invoice Encoding", "Liquidation Processing", "Document Digitization", "Records Management"],
+          "portfolio_details": {
+            "image_url": "",
+            "image_alt": "San Miguel Logistics / SMILSI workplace",
+            "overview": "This project-based role connected billing, liquidation, and logistics documentation. I reviewed customer billing documents, encoded invoice details, prepared and digitized records, and checked supporting information so that transactions could be traced and discrepancies raised for clarification.",
+            "additional_exposure": "The work also included inventory counting in cold storage and, at times, receiving invoices or helping process returned goods as requested.",
+            "reflection": "This experience showed me how closely logistics records and accounting support each other. A number on an invoice is only one part of the picture; the supporting documents and what happened operationally matter too. I became more familiar with practical document control and the need to keep records organized so another person can follow the transaction later.",
+            "takeaways": [
+              "Check the supporting paperwork, not just the invoice total.",
+              "Keep digital and physical records organized for easier review and follow-up.",
+              "Use logistics exposure to strengthen my understanding of how goods movement connects with billing and liquidation."
+            ],
+            "image_note": "Add an approved company, warehouse, or workplace photo here later. Avoid displaying confidential shipment or customer information."
+          }
         },
         {
           "company": "Alfamart Trading Philippines",
@@ -606,7 +650,20 @@
             "Assisted with fund disbursement documentation and other accounting administrative activities."
           ],
           "systems_and_tools": ["SAP", "Microsoft Excel"],
-          "skills_demonstrated": ["Distributor Billing", "SAP Transaction Processing", "Price Verification", "Document Monitoring", "Weekly Transmittal Preparation"]
+          "skills_demonstrated": ["Distributor Billing", "SAP Transaction Processing", "Price Verification", "Document Monitoring", "Weekly Transmittal Preparation"],
+          "portfolio_details": {
+            "image_url": "",
+            "image_alt": "Alfamart Trading Philippines workplace",
+            "overview": "I supported distributor billing work involving DSA and outright transactions for suppliers such as Nestlé, Magnolia, URC, and Selecta. My day-to-day tasks included checking totals in SAP, comparing billed prices with source documents, preparing weekly transmittals, monitoring paperwork, and helping with related accounting administration.",
+            "additional_exposure": "The role also gave me practical exposure to document requirements connected with manpower, trucking, security operations, and fund disbursement support.",
+            "reflection": "This was an early hands-on step into accounting operations after my Financial Management degree. It taught me to be careful with transaction totals and price differences, and to treat document tracking as part of the accounting process rather than an afterthought. Working with supplier billings also helped me see how many separate details sit behind routine transactions.",
+            "takeaways": [
+              "Compare system totals against supporting documents before forwarding billing records.",
+              "Maintain a reliable trail of transmittals and pending documents.",
+              "Build confidence working with ERP data and recurring, detail-heavy processes."
+            ],
+            "image_note": "Add an approved company or workplace photo here later."
+          }
         },
         {
           "company": "NC David Construction & Trucking",
@@ -624,7 +681,20 @@
             "Supported daily office operations through document monitoring, information encoding, and records management."
           ],
           "systems_and_tools": ["Office Systems", "Excel"],
-          "skills_demonstrated": ["Office Administration", "Document Control", "Records Management", "Data Encoding"]
+          "skills_demonstrated": ["Office Administration", "Document Control", "Records Management", "Data Encoding"],
+          "portfolio_details": {
+            "image_url": "",
+            "image_alt": "NC David Construction & Trucking workplace",
+            "overview": "During my internship, I supported the office with document sorting and distribution, record maintenance, receipt and information encoding, and routine administrative work. I also helped organize document flow so records could be located and processed more efficiently.",
+            "additional_exposure": "The role gave me an early look at how administrative records support the day-to-day work of a construction and trucking business.",
+            "reflection": "This internship helped me understand that organized records are practical tools, not just paperwork. When information is filed consistently and encoded carefully, it becomes easier for the next person to retrieve it and continue the process. It also gave me a foundation in office routines before moving into more specialized accounting roles.",
+            "takeaways": [
+              "Keep documents sorted and retrievable instead of allowing records to accumulate without structure.",
+              "Encode receipt and transaction information carefully.",
+              "Look for small, practical ways to make routine office workflows clearer and more efficient."
+            ],
+            "image_note": "Add an approved company or workplace photo here later."
+          }
         }
       ],
       "education": [
@@ -882,6 +952,88 @@
       `).join('');
     }
 
+    // EXPERIENCE OVERVIEW MODAL — interactive dashboard only; excluded from print.
+    function escapeExperienceHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[char]));
+    }
+
+    function openExperienceModal(index) {
+      const job = (currentData.work_experience || [])[index];
+      if (!job) return;
+      const details = job.portfolio_details || {};
+      const title = job.position || 'Work Experience';
+      const company = job.company || 'Company not specified';
+      const period = `${job.employment_period?.start || ''}${job.employment_period?.end ? ` – ${job.employment_period.end}` : ''}`;
+      const tools = job.systems_and_tools || [];
+      const skills = job.skills_demonstrated || [];
+      const responsibilities = job.responsibilities || [];
+      const takeaways = details.takeaways || [];
+      const photoAlt = escapeExperienceHtml(details.image_alt || `${company} workplace`);
+      const photoUrl = String(details.image_url || '').trim();
+      const photoMarkup = photoUrl
+        ? `<div class="relative h-44 overflow-hidden bg-slate-200 sm:h-56"><img src="${escapeExperienceHtml(photoUrl)}" alt="${photoAlt}" class="h-full w-full object-cover" onerror="this.style.display='none';this.nextElementSibling.classList.remove('hidden');this.nextElementSibling.classList.add('flex')"><div class="hidden h-full w-full items-center justify-center bg-gradient-to-br from-slate-200 via-blue-50 to-indigo-100 p-6 text-center"><div><div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/80 text-blue-600 shadow-sm"><i data-lucide="image" class="h-7 w-7"></i></div><p class="text-sm font-semibold text-slate-700">Company photo placeholder</p><p class="mt-1 text-xs text-slate-500">Set portfolio_details.image_url to a valid image path.</p></div></div><div class="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/50 to-transparent"></div><span class="absolute bottom-3 left-4 rounded-lg border border-white/30 bg-slate-950/50 px-2.5 py-1 text-[10px] font-semibold text-white backdrop-blur-sm">Workplace photo</span></div>`
+        : `<div class="flex h-44 items-center justify-center bg-gradient-to-br from-slate-200 via-blue-50 to-indigo-100 p-6 text-center sm:h-56"><div><div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/80 bg-white/75 text-blue-600 shadow-sm"><i data-lucide="image-plus" class="h-7 w-7"></i></div><p class="text-sm font-bold text-slate-700">Company / workplace photo</p><p class="mx-auto mt-1 max-w-sm text-xs leading-relaxed text-slate-500">${escapeExperienceHtml(details.image_note || 'Image placeholder — add an approved company photo later.')}</p></div></div>`;
+
+      const section = (number, heading, body) => `
+        <section class="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
+          <div class="mb-3 flex items-center gap-2.5"><span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-blue-50 text-[11px] font-extrabold text-blue-700">${number}</span><h3 class="text-sm font-bold text-slate-900">${heading}</h3></div>
+          ${body}
+        </section>`;
+
+      const responsibilitiesHtml = responsibilities.length
+        ? `<ul class="space-y-2.5 text-sm leading-relaxed text-slate-600">${responsibilities.map(item => `<li class="flex gap-2.5"><i data-lucide="check-circle-2" class="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-500"></i><span>${escapeExperienceHtml(item)}</span></li>`).join('')}</ul>`
+        : `<p class="text-sm text-slate-500">Add responsibilities for this role in the experience data.</p>`;
+      const toolsHtml = [...tools, ...skills].length
+        ? `<div class="flex flex-wrap gap-2">${[...tools, ...skills].map(item => `<span class="rounded-lg border ${tools.includes(item) ? 'border-blue-100 bg-blue-50 text-blue-700' : 'border-slate-200 bg-slate-100 text-slate-700'} px-2.5 py-1.5 text-xs font-medium">${escapeExperienceHtml(item)}</span>`).join('')}</div>`
+        : `<p class="text-sm text-slate-500">Add systems and skills in the experience data.</p>`;
+      const takeawaysHtml = takeaways.length
+        ? `<ul class="space-y-2 text-sm leading-relaxed text-slate-600">${takeaways.map(item => `<li class="flex gap-2.5"><span class="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-blue-500"></span><span>${escapeExperienceHtml(item)}</span></li>`).join('')}</ul>`
+        : `<p class="text-sm text-slate-500">Add your key takeaways here.</p>`;
+
+      document.getElementById('experience-modal-content').innerHTML = `
+        ${photoMarkup}
+        <div class="space-y-4 p-4 sm:p-6">
+          <header class="pb-1">
+            <div class="mb-2 flex flex-wrap items-center gap-2"><span class="rounded-lg bg-blue-100 px-2.5 py-1 text-[11px] font-bold text-blue-800">${escapeExperienceHtml(job.employment_type || 'Work Experience')}</span><span class="text-xs text-slate-500">${escapeExperienceHtml(period)}</span></div>
+            <h2 id="experience-modal-title" class="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">${escapeExperienceHtml(title)}</h2>
+            <p class="mt-1 font-semibold text-blue-700">${escapeExperienceHtml(company)}</p>
+            ${job.work_location ? `<p class="mt-1 flex items-center gap-1.5 text-xs text-slate-500"><i data-lucide="map-pin" class="h-3.5 w-3.5"></i>${escapeExperienceHtml(job.work_location)}</p>` : ''}
+          </header>
+          ${section('01', 'Role overview', `<p class="text-sm leading-7 text-slate-600">${escapeExperienceHtml(details.overview || 'Add a short explanation of this role and its place in your career.')}</p>`)}
+          ${section('02', 'What I worked on', responsibilitiesHtml)}
+          ${details.additional_exposure ? section('03', 'Additional exposure', `<p class="text-sm leading-7 text-slate-600">${escapeExperienceHtml(details.additional_exposure)}</p>`) : ''}
+          ${section(details.additional_exposure ? '04' : '03', 'Systems & skills', toolsHtml)}
+          ${section(details.additional_exposure ? '05' : '04', 'My reflection', `<p class="text-sm leading-7 text-slate-600">${escapeExperienceHtml(details.reflection || 'Add your personal reflection on this role here.')}</p><p class="mt-3 border-l-2 border-blue-300 pl-3 text-xs italic leading-relaxed text-slate-500">Draft reflection — edit this wording so it accurately represents your own experience and opinions.</p>`)}
+          ${section(details.additional_exposure ? '06' : '05', 'What I take forward', takeawaysHtml)}
+        </div>`;
+
+      const modal = document.getElementById('experience-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+      if (window.lucide) lucide.createIcons();
+      document.getElementById('experience-modal-close').focus();
+    }
+
+    function closeExperienceModal() {
+      const modal = document.getElementById('experience-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function handleExperienceBackdropClick(event) {
+      if (event.target && event.target.id === 'experience-modal') closeExperienceModal();
+    }
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !document.getElementById('experience-modal')?.classList.contains('hidden')) {
+        closeExperienceModal();
+      }
+    });
+
     // WORK EXPERIENCE CARDS
     function renderWorkExperience() {
       const jobs = currentData.work_experience || [];
@@ -914,6 +1066,12 @@
             <div class="mt-4 pt-3 border-t border-slate-200/60 flex flex-wrap gap-1.5">
               ${(job.systems_and_tools || []).map(sys => `<span class="px-2 py-0.5 bg-blue-50 text-blue-700 text-[11px] font-semibold rounded border border-blue-100">${sys}</span>`).join('')}
               ${(job.skills_demonstrated || []).slice(0, 5).map(sk => `<span class="px-2 py-0.5 bg-slate-200 text-slate-700 text-[11px] font-medium rounded">${sk}</span>`).join('')}
+            </div>
+            <div class="no-print mt-4 flex items-center justify-between gap-3">
+              <p class="text-[11px] text-slate-400">Want more context about this role?</p>
+              <button type="button" onclick="openExperienceModal(${idx})" class="inline-flex flex-shrink-0 items-center gap-2 rounded-xl border border-blue-200 bg-white px-3.5 py-2 text-xs font-bold text-blue-700 shadow-sm transition hover:border-blue-300 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                View Experience <i data-lucide="arrow-up-right" class="h-3.5 w-3.5"></i>
+              </button>
             </div>
           </div>
         `;
