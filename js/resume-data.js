@@ -10,7 +10,7 @@ const defaultResumeData = {
         "linkedin": "https://www.linkedin.com/in/mark-angelo-lopega",
         "portfolio": "portfolio.lopegaworks.com",
         "photo_enabled": true,
-        "photo_size": "xlarge",
+        "photo_size": "large",
         "photo_url": "encrypted:assets/a419d0e6.dat"
       },
       "professional_summary": {
