@@ -744,6 +744,10 @@
           <span>${info.phone || 'Phone'}</span>
         </div>
         <div class="flex items-center space-x-2.5 px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300 text-xs font-medium">
+          <i data-lucide="map-pin" class="w-4 h-4 text-blue-400"></i>
+          <span class="truncate">${info.address || 'Address'}</span>
+        </div>
+        <div class="flex items-center space-x-2.5 px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300 text-xs font-medium">
           <i data-lucide="globe" class="w-4 h-4 text-blue-400"></i>
           <span>${info.portfolio || 'Portfolio'}</span>
         </div>
@@ -948,6 +952,7 @@
       }
 
       document.getElementById('res-contact').innerHTML = `
+        <span>📍 ${info.address || ''}</span>
         <span>📞 ${info.phone || ''}</span>
         <span>✉️ ${info.email || ''}</span>
         <span>🔗 ${info.linkedin || ''}</span>
