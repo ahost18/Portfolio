@@ -589,7 +589,7 @@
           "skills_demonstrated": ["Accounts Payable Processing", "General Ledger Entries", "Goods in Transit Accounting", "Raw-Material Accounting", "Freight Accounting", "Invoice Verification", "Expanded Withholding Tax", "Accounting Reversals and Adjustments"],
           "achievements": [],
           "portfolio_details": {
-            "image_url": "",
+            "image_url": "encrypted:assets/7f3a91c2.dat",
             "image_alt": "Terumo Philippines Corporation workplace",
             "overview": "My work sits where supplier documents, physical deliveries, and accounting records meet. I process accounts payable transactions for raw materials and freight, work with QAD ERP and GenLedger, and help address Goods in Transit (GIT) entries when transaction details, timing, or supporting documents need correction.",
             "additional_exposure": "I have also supported inventory checks involving warehouse, production, and facilities, following the verification procedures used by each department.",
@@ -959,7 +959,29 @@
       }[char]));
     }
 
-    function openExperienceModal(index) {
+    // Encrypted portfolio image loader. Only this small mechanism is intentionally compact/obfuscated.
+    // Note: because the key ships to the browser, this deters casual repository browsing, not determined extraction.
+    async function renderEncryptedPortfolioPhoto(assetPath, altText) {
+      const holder = document.getElementById('experience-encrypted-photo');
+      if (!holder || !window.crypto?.subtle) throw new Error('Web Crypto unavailable');
+      const response = await fetch(new URL(assetPath, document.baseURI));
+      if (!response.ok) throw new Error('Encrypted asset could not be loaded');
+      const bytes = new Uint8Array(await response.arrayBuffer());
+      if (bytes.length < 29) throw new Error('Encrypted asset is incomplete');
+      const nonce = bytes.slice(0, 12);
+      const payload = bytes.slice(12);
+      const mask = 0xA7;
+      const material = new Uint8Array([0x2a, 0xad, 0xe0, 0x13, 0x83, 0x45, 0x22, 0xf2, 0xa0, 0xe4, 0xec, 0x35, 0x8a, 0x84, 0xc5, 0x9d, 0x02, 0x99, 0x8e, 0x27, 0xa3, 0x7e, 0x83, 0xff, 0xd5, 0x25, 0x50, 0x39, 0x8d, 0xf2, 0xf6, 0x61].map(v => v ^ mask));
+      const cryptoKey = await crypto.subtle.importKey('raw', material, { name: 'AES-GCM' }, false, ['decrypt']);
+      const plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: nonce }, cryptoKey, payload);
+      const blobUrl = URL.createObjectURL(new Blob([plain], { type: 'image/jpeg' }));
+      holder.className = 'relative h-44 overflow-hidden bg-slate-200 sm:h-56';
+      holder.innerHTML = `<img src="${blobUrl}" alt="${escapeExperienceHtml(altText)}" class="h-full w-full object-cover"><div class="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/50 to-transparent"></div><span class="absolute bottom-3 left-4 rounded-lg border border-white/30 bg-slate-950/50 px-2.5 py-1 text-[10px] font-semibold text-white backdrop-blur-sm">Workplace photo</span>`;
+      const renderedImage = holder.querySelector('img');
+      renderedImage.addEventListener('load', () => URL.revokeObjectURL(blobUrl), { once: true });
+    }
+
+    async function openExperienceModal(index) {
       const job = (currentData.work_experience || [])[index];
       if (!job) return;
       const details = job.portfolio_details || {};
@@ -972,9 +994,12 @@
       const takeaways = details.takeaways || [];
       const photoAlt = escapeExperienceHtml(details.image_alt || `${company} workplace`);
       const photoUrl = String(details.image_url || '').trim();
-      const photoMarkup = photoUrl
-        ? `<div class="relative h-44 overflow-hidden bg-slate-200 sm:h-56"><img src="${escapeExperienceHtml(photoUrl)}" alt="${photoAlt}" class="h-full w-full object-cover" onerror="this.style.display='none';this.nextElementSibling.classList.remove('hidden');this.nextElementSibling.classList.add('flex')"><div class="hidden h-full w-full items-center justify-center bg-gradient-to-br from-slate-200 via-blue-50 to-indigo-100 p-6 text-center"><div><div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/80 text-blue-600 shadow-sm"><i data-lucide="image" class="h-7 w-7"></i></div><p class="text-sm font-semibold text-slate-700">Company photo placeholder</p><p class="mt-1 text-xs text-slate-500">Set portfolio_details.image_url to a valid image path.</p></div></div><div class="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/50 to-transparent"></div><span class="absolute bottom-3 left-4 rounded-lg border border-white/30 bg-slate-950/50 px-2.5 py-1 text-[10px] font-semibold text-white backdrop-blur-sm">Workplace photo</span></div>`
-        : `<div class="flex h-44 items-center justify-center bg-gradient-to-br from-slate-200 via-blue-50 to-indigo-100 p-6 text-center sm:h-56"><div><div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/80 bg-white/75 text-blue-600 shadow-sm"><i data-lucide="image-plus" class="h-7 w-7"></i></div><p class="text-sm font-bold text-slate-700">Company / workplace photo</p><p class="mx-auto mt-1 max-w-sm text-xs leading-relaxed text-slate-500">${escapeExperienceHtml(details.image_note || 'Image placeholder — add an approved company photo later.')}</p></div></div>`;
+      const encryptedPhoto = photoUrl.startsWith('encrypted:');
+      const photoMarkup = encryptedPhoto
+        ? `<div id="experience-encrypted-photo" class="flex h-44 items-center justify-center bg-gradient-to-br from-slate-200 via-blue-50 to-indigo-100 p-6 text-center sm:h-56"><div><div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/80 bg-white/75 text-blue-600 shadow-sm"><i data-lucide="image" class="h-7 w-7"></i></div><p class="text-sm font-bold text-slate-700">Loading workplace photo…</p><p class="mx-auto mt-1 max-w-sm text-xs leading-relaxed text-slate-500">Encrypted portfolio asset</p></div></div>`
+        : photoUrl
+          ? `<div class="relative h-44 overflow-hidden bg-slate-200 sm:h-56"><img src="${escapeExperienceHtml(photoUrl)}" alt="${photoAlt}" class="h-full w-full object-cover" onerror="this.style.display='none';this.nextElementSibling.classList.remove('hidden');this.nextElementSibling.classList.add('flex')"><div class="hidden h-full w-full items-center justify-center bg-gradient-to-br from-slate-200 via-blue-50 to-indigo-100 p-6 text-center"><div><div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/80 text-blue-600 shadow-sm"><i data-lucide="image" class="h-7 w-7"></i></div><p class="text-sm font-semibold text-slate-700">Company photo placeholder</p><p class="mt-1 text-xs text-slate-500">Set portfolio_details.image_url to a valid image path.</p></div></div><div class="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950/50 to-transparent"></div><span class="absolute bottom-3 left-4 rounded-lg border border-white/30 bg-slate-950/50 px-2.5 py-1 text-[10px] font-semibold text-white backdrop-blur-sm">Workplace photo</span></div>`
+          : `<div class="flex h-44 items-center justify-center bg-gradient-to-br from-slate-200 via-blue-50 to-indigo-100 p-6 text-center sm:h-56"><div><div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/80 bg-white/75 text-blue-600 shadow-sm"><i data-lucide="image-plus" class="h-7 w-7"></i></div><p class="text-sm font-bold text-slate-700">Company / workplace photo</p><p class="mx-auto mt-1 max-w-sm text-xs leading-relaxed text-slate-500">${escapeExperienceHtml(details.image_note || 'Image placeholder — add an approved company photo later.')}</p></div></div>`;
 
       const section = (number, heading, body) => `
         <section class="rounded-2xl border border-slate-200 bg-white p-4 sm:p-5">
@@ -1008,6 +1033,15 @@
           ${section(details.additional_exposure ? '05' : '04', 'My reflection', `<p class="text-sm leading-7 text-slate-600">${escapeExperienceHtml(details.reflection || 'Add your personal reflection on this role here.')}</p><p class="mt-3 border-l-2 border-blue-300 pl-3 text-xs italic leading-relaxed text-slate-500">Draft reflection — edit this wording so it accurately represents your own experience and opinions.</p>`)}
           ${section(details.additional_exposure ? '06' : '05', 'What I take forward', takeawaysHtml)}
         </div>`;
+
+      if (encryptedPhoto) {
+        try {
+          await renderEncryptedPortfolioPhoto(photoUrl.slice('encrypted:'.length), photoAlt);
+        } catch (error) {
+          const holder = document.getElementById('experience-encrypted-photo');
+          if (holder) holder.innerHTML = `<div><p class="text-sm font-semibold text-slate-700">Photo unavailable</p><p class="mt-1 text-xs text-slate-500">Check that the encrypted asset was uploaded with the website.</p></div>`;
+        }
+      }
 
       const modal = document.getElementById('experience-modal');
       modal.classList.remove('hidden');
