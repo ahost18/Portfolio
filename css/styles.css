@@ -43,3 +43,134 @@
         border: none !important;
       }
     }
+
+/* --------------------------------------------------------------------------
+   Premium interaction layer — motion, tactile feedback, focus and surfaces
+   This layer is intentionally CSS-only so the app logic and data stay intact.
+   -------------------------------------------------------------------------- */
+:root {
+  --motion-fast: 150ms;
+  --motion-base: 220ms;
+  --motion-smooth: cubic-bezier(.2, .75, .25, 1);
+  --motion-enter: cubic-bezier(.16, 1, .3, 1);
+  --surface-shadow: 0 8px 24px rgba(15, 23, 42, .055);
+  --surface-shadow-hover: 0 14px 34px rgba(15, 23, 42, .105);
+}
+
+html { scroll-behavior: smooth; }
+body { -webkit-tap-highlight-color: transparent; }
+button, a, label[for], [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+button, [role="button"] {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity, filter;
+  transition-duration: var(--motion-base);
+  transition-timing-function: var(--motion-smooth);
+}
+button:active:not(:disabled), [role="button"]:active {
+  transform: scale(.975);
+}
+button:disabled { cursor: not-allowed; opacity: .55; }
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, .48);
+  outline-offset: 3px;
+}
+
+/* Give interactive surfaces a consistent, subtle lift without changing layout. */
+.job-card, #dash-metrics-grid > div, #dash-skills-acct > *, #dash-skills-erp > *,
+#dash-skills-office > *, .experience-modal-panel section {
+  transition: transform var(--motion-base) var(--motion-smooth),
+              box-shadow var(--motion-base) var(--motion-smooth),
+              border-color var(--motion-base) var(--motion-smooth),
+              background-color var(--motion-base) var(--motion-smooth);
+}
+#dash-metrics-grid > div { box-shadow: var(--surface-shadow); }
+#dash-metrics-grid > div:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--surface-shadow-hover);
+}
+.job-card:hover { transform: translateY(-2px); }
+.experience-modal-panel section:hover { border-color: #cbd5e1; box-shadow: 0 5px 18px rgba(15, 23, 42, .045); }
+
+/* Inputs feel responsive while keeping the existing visual language. */
+input, textarea, select {
+  transition: border-color var(--motion-fast) ease, box-shadow var(--motion-fast) ease, background-color var(--motion-fast) ease;
+}
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, .12);
+}
+
+/* Smooth view changes; animation only runs when a view becomes visible. */
+#dashboard-view:not(.hidden), #resume-view:not(.hidden) {
+  animation: premium-view-enter 420ms var(--motion-enter) both;
+}
+#editor-modal:not(.hidden), #experience-modal:not(.hidden) {
+  animation: premium-backdrop-enter 220ms ease-out both;
+}
+#editor-modal:not(.hidden) > div,
+#experience-modal:not(.hidden) .experience-modal-panel {
+  animation: premium-panel-enter 360ms var(--motion-enter) both;
+  will-change: transform, opacity;
+}
+
+/* Toasts: refined entrance and exit, with a clear visual hierarchy. */
+#toast-container { gap: 10px; }
+#toast-container > div {
+  max-width: min(390px, calc(100vw - 28px));
+  min-width: 220px;
+  padding: 13px 16px;
+  border-radius: 14px;
+  box-shadow: 0 14px 38px rgba(2, 6, 23, .24), 0 2px 8px rgba(2, 6, 23, .12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transform-origin: bottom right;
+  animation: premium-toast-enter 340ms var(--motion-enter) both;
+}
+#toast-container > div span { line-height: 1.5; }
+
+/* Keep icon and filter interactions crisp, including on touch screens. */
+.filter-tag:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37, 99, 235, .09); }
+.filter-tag:active { transform: scale(.96); }
+header button:hover, header label:hover { filter: brightness(1.08); }
+img { transition: opacity var(--motion-base) ease; }
+
+@keyframes premium-view-enter {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes premium-backdrop-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes premium-panel-enter {
+  from { opacity: 0; transform: translateY(14px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes premium-toast-enter {
+  from { opacity: 0; transform: translateY(10px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Avoid forcing motion on people who have requested reduced animation. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* Keep the printable A4 output completely free of interface animation. */
+@media print {
+  html { scroll-behavior: auto; }
+  #dashboard-view, #resume-view, #editor-modal, #experience-modal,
+  #toast-container, button, .job-card, #dash-metrics-grid > div {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
