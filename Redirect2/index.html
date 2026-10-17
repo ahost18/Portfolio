@@ -1,1 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lopegaworks - Redirecting...</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts for futuristic look -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="space-background">
+        <div class="stars"></div>
+        <div class="cityscape-glow"></div>
+    </div>
 
+    <div class="container" id="app-container">
+        <!-- Header Branding -->
+        <header class="header">
+            <div class="logo-box">
+                <span class="logo-text-icon">LW</span>
+                <span class="brand-name">LOPEGAWORKS</span>
+            </div>
+        </header>
+
+        <!-- Main Dynamic Stage -->
+        <main class="stage">
+            <!-- STEP 1: Initial Welcome -->
+            <section class="step-view active" id="step-1">
+                <div class="content-left">
+                    <h1>Oops! You seem to be in the <span class="highlight">wrong place.</span></h1>
+                    <p class="subtitle">Don't worry, I'll guide you to the right destination.</p>
+                    <div class="redirect-card">
+                        <span class="cat-icon">🐱</span>
+                        <div class="redirect-info">
+                            <span class="label">Redirecting to</span>
+                            <span class="url" id="target-url">portfolio.lopegaworks.com</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STEP 2: Preparing Route -->
+            <section class="step-view" id="step-2">
+                <div class="speech-bubble">Let me check where you need to go...</div>
+                <div class="scan-box">
+                    <h3>Scanning destination...</h3>
+                    <ul>
+                        <li class="check-item active"><span></span> Checking subdomain</li>
+                        <li class="check-item" id="chk-2"><span></span> Verifying route</li>
+                        <li class="check-item" id="chk-3"><span></span> Preparing portal</li>
+                        <li class="check-item" id="chk-4"><span></span> Almost there...</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- STEP 3: Opening Portal -->
+            <section class="step-view" id="step-3">
+                <div class="speech-bubble">Almost ready! Opening the path for you...</div>
+                <div class="portal-ring-container">
+                    <div class="portal-energy-ring"></div>
+                    <div class="portal-core"></div>
+                </div>
+            </section>
+
+            <!-- STEP 4 & 5: Redirecting Final Countdown & Walkway -->
+            <section class="step-view" id="step-4">
+                <div class="speech-bubble">All set! Taking you there in a moment...</div>
+                <div class="countdown-wrapper">
+                    <div class="countdown-ring">
+                        <span id="countdown-number">3</span>
+                    </div>
+                    <p class="countdown-label">Redirecting in <span id="sec-text">3 seconds</span>...</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Animated Chibi Anubis Character Container -->
+        <div class="chibi-character-container" id="chibi-container">
+            <div class="speech-tag" id="floating-speech">See you Soon! ♡</div>
+            <!-- Pure CSS / SVG Chibi Anubis Avatar -->
+            <div class="chibi-avatar">
+                <div class="ears">
+                    <div class="ear left"></div>
+                    <div class="ear right"></div>
+                </div>
+                <div class="hat"></div>
+                <div class="head">
+                    <div class="hair-bangs"></div>
+                    <div class="eyes">
+                        <div class="eye left"></div>
+                        <div class="eye right"></div>
+                    </div>
+                    <div class="blush left"></div>
+                    <div class="blush right"></div>
+                </div>
+                <div class="body-cloak">
+                    <div class="core-glow-gem"></div>
+                </div>
+            </div>
+            <!-- Floating Mini Spirit Companion -->
+            <div class="spirit-pet"></div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
