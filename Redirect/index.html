@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071323">
+  <meta name="description" content="A friendly LopegaWorks navigation page.">
+  <title>Finding your way · LopegaWorks</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="scene" id="scene">
+    <div class="backdrop" aria-hidden="true"></div>
+    <div class="image-wash" aria-hidden="true"></div>
+    <div class="stars" id="stars" aria-hidden="true"></div>
+
+    <div class="topbar">
+      <a class="brand" href="#" aria-label="LopegaWorks home">
+        <span class="brand-mark">L<span>✦</span></span>
+        <span>LOPEGA<span class="brand-light">WORKS</span></span>
+      </a>
+      <span class="status"><i></i> NAVIGATION ASSISTANT</span>
+    </div>
+
+    <section class="content" aria-labelledby="headline">
+      <div class="eyebrow"><span class="eyebrow-line"></span> A LITTLE DETOUR</div>
+      <h1 id="headline">Looks like<br>you took a <em>wrong turn.</em></h1>
+      <p class="intro" id="dialogue">It's okay. Stay close — I'll open a path to the right place.</p>
+
+      <div class="route-card">
+        <div class="route-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 12h15M13 5l7 7-7 7"/></svg>
+        </div>
+        <div class="route-copy">
+          <span class="route-label">YOUR DESTINATION</span>
+          <strong id="destination-label">portfolio.lopegaworks.com</strong>
+        </div>
+        <span class="route-check" id="route-check" aria-hidden="true">✦</span>
+      </div>
+
+      <div class="progress-area">
+        <div class="progress-meta">
+          <span id="phase-label">Gathering a little energy</span>
+          <span><b id="countdown">5</b><small>s</small></span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+
+      <div class="actions">
+        <button class="primary" id="go-now" type="button">
+          <span>Take me there</span><span class="button-arrow" aria-hidden="true">↗</span>
+        </button>
+        <button class="secondary" id="stay-here" type="button">Stay on this page</button>
+      </div>
+      <p class="footnote" id="footnote">Opening a safe path in <span id="footnote-count">5</span> seconds.</p>
+    </section>
+
+    <section class="character-stage" aria-label="Animated assistant illustration">
+      <div class="ambient-orb orb-one" aria-hidden="true"></div>
+      <div class="ambient-orb orb-two" aria-hidden="true"></div>
+      <div class="portal" aria-hidden="true">
+        <div class="portal-ring ring-a"></div>
+        <div class="portal-ring ring-b"></div>
+        <div class="portal-ring ring-c"></div>
+        <div class="portal-core"></div>
+        <div class="portal-sparks" id="portal-sparks"></div>
+      </div>
+      <div class="character-frame">
+        <img src="assets/assistant-scene.png" alt="A blue-haired digital assistant comforting a visitor" class="character-art">
+        <div class="character-glow" aria-hidden="true"></div>
+      </div>
+      <div class="magic-ribbon ribbon-one" aria-hidden="true"></div>
+      <div class="magic-ribbon ribbon-two" aria-hidden="true"></div>
+      <div class="magic-ribbon ribbon-three" aria-hidden="true"></div>
+      <div class="magic-seal" aria-hidden="true"><span>✦</span></div>
+      <div class="character-caption"><span class="caption-dot"></span><span id="character-status">Preparing a route for you</span></div>
+    </section>
+
+    <div class="bottomline">
+      <span>LOPEGAWORKS <b>·</b> PERSONAL WEBSPACE</span>
+      <span class="bottom-right">A wrong turn is still a way forward <span>✧</span></span>
+    </div>
+    <div class="transition-flash" id="transition-flash" aria-hidden="true"></div>
+  </main>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
