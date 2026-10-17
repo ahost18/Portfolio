@@ -1,1 +1,451 @@
+:root {
+    --primary-blue: #00d2ff;
+    --deep-blue: #031633;
+    --glow-color: rgba(0, 210, 255, 0.6);
+    --text-light: #e0f7ff;
+}
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: #010714;
+    color: var(--text-light);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Background Atmosphere */
+.space-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #052347 0%, #010714 100%);
+    z-index: -1;
+}
+
+.cityscape-glow {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 110, 255, 0.15), transparent);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    height: 700px;
+    padding: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgba(3, 15, 35, 0.7);
+    border: 1px solid rgba(0, 210, 255, 0.2);
+    border-radius: 24px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 210, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Header */
+.header .logo-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-text-icon {
+    background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+    color: #fff;
+    padding: 6px 12px;
+    font-weight: 700;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+.brand-name {
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #a5e7ff;
+}
+
+/* Stage & Step Management */
+.stage {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.step-view {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateY(10px);
+    width: 100%;
+}
+
+.step-view.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Step 1 Typography & Card */
+.content-left h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.highlight {
+    color: var(--primary-blue);
+    text-shadow: 0 0 15px var(--glow-color);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #8ab4f8;
+    margin-bottom: 30px;
+}
+
+.redirect-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(1, 25, 54, 0.8);
+    border: 1px solid rgba(0, 210, 255, 0.4);
+    padding: 12px 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.redirect-info .label {
+    display: block;
+    font-size: 0.75rem;
+    color: #7da5c4;
+}
+
+.redirect-info .url {
+    font-weight: 600;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+/* Step 2: Scanner UI */
+.scan-box {
+    background: rgba(2, 12, 28, 0.85);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    padding: 24px;
+    border-radius: 16px;
+    width: 320px;
+    box-shadow: 0 0 25px rgba(0, 210, 255, 0.15);
+}
+
+.scan-box h3 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: var(--primary-blue);
+}
+
+.scan-box ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.scan-box li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #8ab4f8;
+}
+
+.scan-box li span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #4a75a0;
+}
+
+.scan-box li.active {
+    color: #fff;
+}
+
+.scan-box li.active span {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 8px var(--primary-blue);
+}
+
+/* Speech Bubbles */
+.speech-bubble {
+    position: absolute;
+    top: -60px;
+    background: rgba(1, 20, 45, 0.95);
+    border: 1px solid var(--primary-blue);
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    box-shadow: 0 0 15px var(--glow-color);
+    animation: floatBubble 3s ease-in-out infinite;
+}
+
+/* Portal Ring Effect */
+.portal-ring-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portal-energy-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px dashed var(--primary-blue);
+    border-radius: 50%;
+    animation: rotatePortal 8s linear infinite;
+    box-shadow: 0 0 30px var(--glow-color);
+}
+
+.portal-core {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #fff, var(--primary-blue));
+    border-radius: 50%;
+    box-shadow: 0 0 40px #fff;
+    animation: pulseCore 2s ease-in-out infinite;
+}
+
+/* Step 4 Countdown */
+.countdown-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.countdown-ring {
+    width: 90px;
+    height: 90px;
+    border: 4px solid rgba(0, 210, 255, 0.2);
+    border-top-color: var(--primary-blue);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    box-shadow: 0 0 20px var(--glow-color);
+    animation: spinRing 1s linear infinite;
+}
+
+.countdown-label {
+    font-size: 0.95rem;
+    color: #9ac2ef;
+}
+
+/* --- Pure CSS Animated Chibi Anubis --- */
+.chibi-character-container {
+    position: absolute;
+    right: 60px;
+    bottom: 50px;
+    width: 180px;
+    height: 220px;
+    animation: chibiFloat 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.speech-tag {
+    position: absolute;
+    top: -25px;
+    right: -10px;
+    background: #00d2ff;
+    color: #010714;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--glow-color);
+}
+
+.chibi-avatar {
+    position: relative.
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Jackal Ears resembling Anubis */
+.ears {
+    position: absolute;
+    top: -20px;
+    width: 130px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+.ear {
+    width: 35px;
+    height: 70px;
+    background: linear-gradient(135deg, #0b2d5e, #02142d);
+    border: 2px solid var(--primary-blue);
+    border-radius: 50% 50% 20% 20%;
+    box-shadow: 0 0 10px var(--glow-color);
+    transform-origin: bottom;
+}
+
+.ear.left { transform: rotate(-15deg); }
+.ear.right { transform: rotate(15deg); }
+
+.hat {
+    position: absolute;
+    top: 15px;
+    width: 110px;
+    height: 45px;
+    background: #02142d;
+    border: 2px solid var(--primary-blue);
+    border-radius: 20px 20px 10px 10px;
+    z-index: 3;
+}
+
+.head {
+    position: absolute;
+    top: 40px;
+    width: 100px;
+    height: 85px;
+    background: #0c2b57;
+    border: 2px solid var(--primary-blue);
+    border-radius: 40px;
+    z-index: 4;
+    box-shadow: inset 0 0 15px rgba(0, 210, 255, 0.4);
+}
+
+.eyes {
+    position: absolute;
+    top: 35px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+
+.eye {
+    width: 16px;
+    height: 22px;
+    background: #00d2ff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff, inset 0 0 5px #0055ff;
+    animation: blinkEye 4s infinite;
+}
+
+.blush {
+    position: absolute;
+    top: 50px;
+    width: 12px;
+    height: 6px;
+    background: rgba(0, 210, 255, 0.5);
+    border-radius: 50%;
+}
+.blush.left { left: 15px; }
+.blush.right { right: 15px; }
+
+.body-cloak {
+    position: absolute;
+    top: 115px;
+    width: 90px;
+    height: 80px;
+    background: linear-gradient(180deg, #072248, #010f24);
+    border: 2px solid var(--primary-blue);
+    border-radius: 35px 35px 20px 20px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+}
+
+.core-glow-gem {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00d2ff, 0 0 30px #00d2ff;
+    animation: pulseCore 1.5s infinite alternate;
+}
+
+.spirit-pet {
+    position: absolute;
+    left: -30px;
+    bottom: 40px;
+    width: 25px;
+    height: 25px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--primary-blue);
+    animation: spiritOrbit 3s ease-in-out infinite;
+}
+
+/* Keyframe Animations */
+@keyframes chibiFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes floatBubble {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes blinkEye {
+    0%, 96%, 98% { transform: scaleY(1); }
+    97% { transform: scaleY(0.1); }
+}
+
+@keyframes pulseCore {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+
+@keyframes rotatePortal {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spinRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spiritOrbit {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(15px, -15px); }
+}
+
+/* Responsive design adjustments */
+@media(max-width: 768px) {
+    .container { height: 100vh; border-radius: 0; padding: 20px; }
+    .chibi-character-container { right: 20px; bottom: 30px; transform: scale(0.8); }
+    .content-left h1 { font-size: 1.8rem; }
+}
