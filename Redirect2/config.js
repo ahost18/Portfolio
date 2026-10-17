@@ -4,5 +4,5 @@ const CONFIG = {
     defaultDestination: "https://portfolio.lopegaworks.com",
     
     // Total time elapsed before final redirection occurs (in milliseconds)
-    redirectionDelayMs: 6000 
+    redirectionDelayMs: 6000000 
 };
