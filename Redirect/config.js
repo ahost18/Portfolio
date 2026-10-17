@@ -9,7 +9,7 @@ window.LW_CONFIG = {
   redirectDelaySeconds: 5,
 
   // Keep true for a real redirect. Set false while previewing the design.
-  autoRedirect: true,
+  autoRedirect: false,
 
   // Optional: use a short label instead of showing the full destination URL.
   destinationLabel: "portfolio.lopegaworks.com"
