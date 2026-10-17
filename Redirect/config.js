@@ -6,7 +6,7 @@ window.LW_CONFIG = {
   brand: "LopegaWorks",
   // Change this to the site you want visitors to reach.
   destination: "https://portfolio.lopegaworks.com",
-  redirectDelaySeconds: 5,
+  redirectDelaySeconds: 500,
 
   // Keep true for a real redirect. Set false while previewing the design.
   autoRedirect: false,
