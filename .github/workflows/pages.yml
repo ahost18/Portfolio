@@ -1,0 +1,55 @@
+name: Deploy portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Add deployment version information
+        env:
+          BUILD_COMMIT: ${{ github.sha }}
+        run: |
+          python3 - <<'PYCODE'
+          import datetime, json, os
+          commit = os.environ['BUILD_COMMIT']
+          deployed_at = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z')
+          with open('build-info.json', 'w', encoding='utf-8') as f:
+              json.dump({'commit': commit, 'deployedAt': deployed_at}, f, indent=2)
+              f.write('\n')
+          path = 'index.html'
+          with open(path, 'r', encoding='utf-8') as f:
+              html = f.read()
+          if '__BUILD_COMMIT__' not in html:
+              raise SystemExit('Expected build commit placeholder was not found in index.html')
+          with open(path, 'w', encoding='utf-8') as f:
+              f.write(html.replace('__BUILD_COMMIT__', commit))
+          PYCODE
+
+      - name: Upload website artifact
+        uses: actions/upload-pages-artifact@v3
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
