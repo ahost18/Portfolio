@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="portfolio-build-commit" content="__BUILD_COMMIT__">
   <title>Mark Angelo Francisco Lopega - Resume & Portfolio</title>
   
   <!-- Tailwind CSS CDN -->
@@ -496,7 +497,33 @@
   </div>
 
   <!-- JAVASCRIPT CONTROLLERS & DATA LOGIC -->
+
+  <!-- Lightweight site diagnostics footer -->
+  <footer id="site-health" class="no-print border-t border-slate-200 bg-white/95 text-slate-600">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <button id="site-health-toggle" type="button" aria-expanded="false" aria-controls="site-health-details"
+        class="flex w-full flex-wrap items-center justify-between gap-2 text-left text-xs sm:text-sm">
+        <span class="flex items-center gap-2">
+          <span id="site-health-dot" class="inline-block h-2.5 w-2.5 rounded-full bg-slate-400"></span>
+          <span id="site-health-label" class="font-semibold">Site status: Checking…</span>
+        </span>
+        <span class="text-slate-400">Diagnostics <span aria-hidden="true">▾</span></span>
+      </button>
+      <div id="site-health-details" class="hidden mt-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs leading-relaxed">
+        <p id="site-health-summary" class="mb-2">Checking application and resume data…</p>
+        <ul id="site-health-checks" class="space-y-1"></ul>
+        <div class="mt-3 flex flex-wrap items-center gap-3">
+          <button id="site-health-run" type="button" class="rounded-lg bg-slate-800 px-3 py-1.5 font-semibold text-white hover:bg-slate-700">Run checks again</button>
+          <button id="site-health-refresh" type="button" class="rounded-lg border border-slate-300 px-3 py-1.5 font-semibold text-slate-700 hover:bg-white">Refresh page</button>
+          <span id="site-health-time" class="text-slate-400"></span>
+        </div>
+        <p class="mt-2 text-slate-400">These checks are diagnostic clues, not a guarantee. A proxy or network cache can still affect what is returned.</p>
+      </div>
+    </div>
+  </footer>
+
   <script src="js/resume-data.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/site-health.js"></script>
 </body>
 </html>
