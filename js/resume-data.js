@@ -15,7 +15,7 @@ const defaultResumeData = {
       },
       "professional_summary": {
         "title": "Accounting and Finance Professional",
-        "summary": "BSBA Major in Financial Management graduate with hands-on experience in accounts payable, general ledger entries, distributor billing, invoice verification, document control, and financial transaction processing. Experienced in using QAD ERP, SAP, and legacy general ledger systems, with exposure to Goods in Transit accounting, freight transactions, expanded withholding tax, and accounting adjustments. Detail-oriented and capable of handling high-volume transactions while supporting accurate financial records and reporting.",
+        "summary": "BSBA Major in Financial Management graduate with hands-on experience in accounts payable, general ledger entries, raw material billings, invoice verification, document control, and financial transaction processing. Experienced in using QAD ERP, SAP, and legacy general ledger systems, with exposure to Goods in Transit accounting, freight transactions, expanded withholding tax, and accounting adjustments. Seeking to become more skilled and reliable in area of finance, To become more competent while also contributing to the growth of the company. ",
         "target_positions": [
           "Accounts Payable Associate",
           "Accounting Assistant",
@@ -36,11 +36,15 @@ const defaultResumeData = {
           "employment_type": "Full-Time",
           "department": "Financial Accounting",
           "responsibilities": [
-            "Processed accounts payable transactions involving raw materials, freight, and Goods in Transit (GIT), supporting accurate expense recognition and financial reporting.",
-            "Prepared and maintained accounting entries in the legacy General Ledger (GenLedger) system and QAD ERP, supporting the recording and processing of accounts payable transactions.",
-            "Handled GIT accounting activities, including transaction setup, reversals, price adjustments, and corrections involving raw-material deliveries and discrepancies across accounting periods.",
-            "Verified raw-material and freight supporting documents, including Sales Invoices (SI), Delivery Receipts (DR), Receiving and Delivery Reports (RDR), and Credit Memos, checking quantities, prices, billed amounts, and transaction classifications.",
-            "Reviewed applicable expanded withholding tax (EWT) treatment and identified documentation, billing, and timing discrepancies requiring clarification or accounting adjustments."
+            "Process high volume accounts payable transactiin involving raw materials, freight, and Goods in Transit, supporting accurate expense and financial record keeping.",
+            "Verify raw-material transactions against Sales Invoices, Delivery Receipts, Receiving Reports, purchase orders, and related supporting documents to identify discrepancies in item descriptions, quantities, unit prices, and transaction details.",
+            "Investigate discrepancies involving supplier invoices, warehouse receiving records, procurement entries, and system-recorded costs, coordinating with relevant parties to obtain supporting documentation or resolve issues.",
+            "Monitor pending documents and transactions across accounting periods, compare current transactions with previous entries, follow up on missing documents, and process adjustments when the required supporting documents are available.",
+            "Review freight transactions for document completeness, delivery details, billed amounts, transaction descriptions, and applicable expanded withholding tax (EWT) requirements.",
+            "Record and verify corresponding accounting entries in QAD ERP and the legacy GenLedger system, including original entries, reversals, and adjustments.",
+            "Maintain organized accounting documents and supporting records to facilitate supervisor review and approval, applying 5S principles to improve document management and retrieval.",
+            "Tracking of GIT, Freight, Rae material invoices and documents to match previously recorded invoices and apply reversals.",
+            "Reconcile foreign currency invoice amounts by verifying exhange rate and original amount applied on the original documents for more accurate reversal when needed."
           ],
           "systems_and_tools": ["QAD ERP", "GenLedger", "Microsoft Excel"],
           "skills_demonstrated": ["Accounts Payable Processing", "General Ledger Entries", "Goods in Transit Accounting", "Raw-Material Accounting", "Freight Accounting", "Invoice Verification", "Expanded Withholding Tax", "Accounting Reversals and Adjustments"],
