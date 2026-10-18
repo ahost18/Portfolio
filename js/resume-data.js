@@ -52,20 +52,20 @@ const defaultResumeData = {
           "portfolio_details": {
             "image_url": "encrypted:assets/7f3a91c2.dat",
             "image_alt": "Terumo Philippines Corporation workplace",
-            "overview": "My work sits where supplier documents, physical deliveries, and accounting records meet. I process accounts payable transactions for raw materials and freight, work with QAD ERP and GenLedger, and help address Goods in Transit (GIT) entries when transaction details, timing, or supporting documents need correction.",
-            "additional_exposure": "I have also supported inventory checks involving warehouse, production, and facilities, following the verification procedures used by each department.",
-            "reflection": "This role has helped me connect what I studied in Financial Management with actual accounting workflows. I have learned that an accounting entry is only as reliable as the documents and checks behind it. I enjoy comparing amounts, tracing discrepancies, and figuring out what needs clarification because it helps me understand the reason behind a transaction, not just how to encode it.",
+            "overview": "My work is about proper inputting of data to support the creation of financial statement monthy and to make sure that taxes are paid properly. Also to accurately record monthy expenses. My responsibility involves GIT, Raw-material, and freight processing. The key part of my job is to review each transactions, reversals, and monitoring of documents and encoding them on our system which is a legacy General Ledger and QAD (ERP).",
+            "additional_exposure": "I have also supported inventory checks involving warehouse, production and facility inventory supply. Following verification procedures used by each department.",
+            "reflection": "This role greatly help me connect what I studied in Financial Management with actual accounting workflows and what it really looks like to be on corporate. I learned how vast is accounting and how hard it is to be in Accounting Payables. I also have learned that an accounting entry is only as reliable as the documents and checks behind it and also how important is 5S towards document keeping. I enjoy the analyzation needed comparing amounts, tracing discrepancy, making formulas and using all available for accurate and more productive recording. This role showed how it is important to understand the reason behind a transaction, not just how to encode it.",
             "takeaways": [
               "Connect invoices, receiving documents, and ERP entries before treating a transaction as complete.",
-              "Pay attention to transaction timing, reversals, and supporting evidence when correcting GIT records.",
-              "Keep building accounting judgment, ERP fluency, and a broader understanding of financial reporting."
+              "Pay attention to transaction timing, reversals, and supporting documents for more accurate GIT recording involving exhange rate matching of EUR, JPY, USD and PHP.",
+              "Keep building confidence, ERP accuracy, and a much more and broader understanding of financial reporting."
             ],
-            "image_note": "Add a company exterior, workplace, or approved non-confidential photo here later."
+            "image_note": "This image is encrypted and might load slow to prevent bots scrapers."
           }
         },
         {
           "company": "San Miguel Logistics / SMILSI",
-          "work_location": "Santa Rosa, Laguna",
+          "work_location": "LNIP Santa Rosa, Laguna",
           "position": "Liquidation Clerk / System Admin",
           "employment_period": {
             "start": "July 2025",
@@ -75,17 +75,17 @@ const defaultResumeData = {
           "responsibilities": [
             "Reviewed customer billing documents associated with Alfamart and San Miguel operations to support accurate billing and liquidation.",
             "Encoded invoice information and processed liquidation documents for accounting and operational records.",
-            "Digitized, organized, and maintained transaction documents to support document retrieval and processing.",
-            "Checked supporting documentation and billing details to identify discrepancies requiring correction or clarification."
+            "Scanned, organized, and maintained transaction documents to support document retrieval and processing.",
+            "Checked supporting documentation and billing details to identify discrepancies requiring correction or clarification.",
           ],
-          "systems_and_tools": ["Document Management Systems", "Excel"],
+          "systems_and_tools": ["SAP", "Document Management Systems", "Excel"],
           "skills_demonstrated": ["Billing Verification", "Invoice Encoding", "Liquidation Processing", "Document Digitization", "Records Management"],
           "portfolio_details": {
             "image_url": "encrypted:assets/c82f1a7d.dat",
             "image_alt": "San Miguel Logistics / SMILSI workplace exterior",
-            "overview": "This project-based role connected billing, liquidation, and logistics documentation. I reviewed customer billing documents, encoded invoice details, prepared and digitized records, and checked supporting information so that transactions could be traced and discrepancies raised for clarification.",
+            "overview": "This project-based role connected billing, liquidation, and logistics documentation. I reviewed customer billing documents, encoded invoice details, prepared and scanned documents, and checked supporting information so that transactions could be traced and discrepancies raised for clarification.",
             "additional_exposure": "The work also included inventory counting in cold storage and, at times, receiving invoices or helping process returned goods as requested.",
-            "reflection": "This experience showed me how closely logistics records and accounting support each other. A number on an invoice is only one part of the picture; the supporting documents and what happened operationally matter too. I became more familiar with practical document control and the need to keep records organized so another person can follow the transaction later.",
+            "reflection": "This experience showed me how closely logistics records and accounting support each other. I became more familiar with practical document control and the need to keep records organized so another person can follow the transaction later.",
             "takeaways": [
               "Check the supporting paperwork, not just the invoice total.",
               "Keep digital and physical records organized for easier review and follow-up.",
