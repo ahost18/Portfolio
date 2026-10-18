@@ -174,3 +174,11 @@ img { transition: opacity var(--motion-base) ease; }
     box-shadow: none !important;
   }
 }
+
+/* Site health diagnostics footer */
+#site-health { margin-top: auto; }
+#site-health-toggle:focus-visible, #site-health button:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, .45);
+  outline-offset: 3px;
+}
+#site-health-checks li { overflow-wrap: anywhere; }
