@@ -303,6 +303,7 @@
           ${section(details.additional_exposure ? '04' : '03', 'Systems & skills', toolsHtml)}
           ${section(details.additional_exposure ? '05' : '04', 'My reflection', `<p class="text-sm leading-7 text-slate-600">${escapeExperienceHtml(details.reflection || 'Add your personal reflection on this role here.')}</p><p class="mt-3 border-l-2 border-blue-300 pl-3 text-xs italic leading-relaxed text-slate-500">Draft reflection — edit this wording so it accurately represents your own experience and opinions.</p>`)}
           ${section(details.additional_exposure ? '06' : '05', 'What I take forward', takeawaysHtml)}
+          ${company === 'Alfamart Trading Philippines' && title === 'Accounting Clerk' ? section('07', 'Work file', `<div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"><div><p class="text-sm font-semibold text-slate-800">Processing of Trades</p><p class="mt-1 text-xs leading-relaxed text-slate-500">Online reference guide covering Outright and Direct-to-Store (DSA) billing procedures.</p></div><a href="work-files/processing-of-trades.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-bold text-white hover:bg-blue-700">Read work file <i data-lucide="book-open" class="h-4 w-4"></i></a></div>`) : ''}
         </div>`;
 
       if (encryptedPhoto) {
