@@ -303,6 +303,7 @@
           ${section(details.additional_exposure ? '04' : '03', 'Systems & skills', toolsHtml)}
           ${section(details.additional_exposure ? '05' : '04', 'My reflection', `<p class="text-sm leading-7 text-slate-600">${escapeExperienceHtml(details.reflection || 'Add your personal reflection on this role here.')}</p><p class="mt-3 border-l-2 border-blue-300 pl-3 text-xs italic leading-relaxed text-slate-500">Draft reflection — edit this wording so it accurately represents your own experience and opinions.</p>`)}
           ${section(details.additional_exposure ? '06' : '05', 'What I take forward', takeawaysHtml)}
+          ${company === 'Alfamart Trading Philippines' && title === 'Accounting Clerk' ? section('07', 'Work file', `<div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"><div><p class="text-sm font-semibold text-slate-800">Processing of Trades</p><p class="mt-1 text-xs leading-relaxed text-slate-500">Online reference guide covering Outright and Direct-to-Store (DSA) billing procedures.</p></div><a href="work-files/processing-of-trades.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-xs font-bold text-white hover:bg-blue-700">Read work file <i data-lucide="book-open" class="h-4 w-4"></i></a></div>`) : ''}
         </div>`;
 
       if (encryptedPhoto) {
@@ -339,21 +340,6 @@
       }
     });
 
-    // Company logo helper. Logos are expected in the existing assets/ directory.
-    // NCD has no supplied logo, so it uses a neutral building icon.
-    function getCompanyLogoMarkup(job) {
-      const company = String(job.company || '').toLowerCase();
-      let src = '';
-      let alt = job.company || 'Company';
-      if (company.includes('terumo')) src = 'assets/terumo.png';
-      else if (company.includes('san miguel') || company.includes('smilsi')) src = 'assets/smilsi.png';
-      else if (company.includes('alfamart')) src = 'assets/alfamart.png';
-
-      const fallbackIcon = `<span class="company-logo-fallback ${src ? 'hidden' : ''} flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600" aria-hidden="true"><i data-lucide="building-2" class="h-6 w-6"></i></span>`;
-      if (!src) return fallbackIcon;
-      return `<span class="company-logo-wrap relative flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5"><img src="${src}" alt="${alt} logo" class="company-logo h-full w-full object-contain" loading="lazy" onerror="this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden')"><span class="company-logo-fallback hidden absolute inset-0 flex items-center justify-center bg-white text-slate-600" aria-hidden="true"><i data-lucide="building-2" class="h-6 w-6"></i></span></span>`;
-    }
-
     // WORK EXPERIENCE CARDS
     function renderWorkExperience() {
       const jobs = currentData.work_experience || [];
@@ -369,12 +355,9 @@
         return `
           <div class="job-card transition-all duration-200 rounded-xl p-4 sm:p-5 border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-blue-200 hover:shadow-md" data-skills="${searchTokens}">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200/60 pb-3">
-              <div class="flex min-w-0 items-center gap-3">
-                ${getCompanyLogoMarkup(job)}
-                <div class="min-w-0">
-                  <h4 class="font-bold text-slate-900 text-sm sm:text-base">${job.position}</h4>
-                  <p class="text-xs font-semibold text-blue-700">${job.company} ${job.work_location ? `<span class="text-slate-500 font-normal">(${job.work_location})</span>` : ''}</p>
-                </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm sm:text-base">${job.position}</h4>
+                <p class="text-xs font-semibold text-blue-600">${job.company} ${job.work_location ? `<span class="text-slate-500 font-normal">(${job.work_location})</span>` : ''}</p>
               </div>
               <div class="sm:text-right">
                 <span class="inline-block px-2.5 py-1 rounded-md ${idx === 0 ? 'bg-blue-100 text-blue-800' : 'bg-slate-200 text-slate-700'} font-semibold text-xs">${periodStr}</span>
