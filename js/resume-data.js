@@ -68,28 +68,31 @@ const defaultResumeData = {
           "work_location": "LNIP Santa Rosa, Laguna",
           "position": "Liquidation Clerk / System Admin",
           "employment_period": {
-            "start": "July 2025",
+            "start": "August 2025",
             "end": "December 2025"
           },
           "employment_type": "Project-Based",
           "responsibilities": [
-            "Reviewed customer billing documents associated with Alfamart and San Miguel operations to support accurate billing and liquidation.",
-            "Encoded invoice information and processed liquidation documents for accounting and operational records.",
-            "Scanned, organized, and maintained transaction documents to support document retrieval and processing.",
-            "Checked supporting documentation and billing details to identify discrepancies requiring correction or clarification.",
+            "Processed product-related liquidation transactions for customers including SM, WalterMart, Landers, and other San Miguel distribution customers.",
+            "Reviewed product transactions against invoices, delivery documents, and supporting records to check consistency, completeness, and transaction totals before finalizing liquidation.",
+            "Used SAP ERP to review and process transaction information, verify supporting documentation, and identify discrepancies; transaction details were not all manually encoded.",
+            "Scanned, digitized, organized, and maintained transaction documents to support traceability and efficient retrieval.",
+            "Conducted physical inventory counts in cold-storage facilities and followed up on stock variances, seeking reasonable explanations before accepting discrepancies.",
+            "Checked goods-return documentation and supporting records to verify the paperwork associated with returned products.",
+            "Received invoices and handled related documentation as part of day-to-day logistics operations."
           ],
-          "systems_and_tools": ["SAP", "Document Management Systems", "Excel"],
-          "skills_demonstrated": ["Billing Verification", "Invoice Encoding", "Liquidation Processing", "Document Digitization", "Records Management"],
+          "systems_and_tools": ["SAP ERP", "Document Management Systems", "Microsoft Excel"],
+          "skills_demonstrated": ["Product Transaction Liquidation", "Billing and Document Verification", "SAP ERP", "Transaction Processing", "Document Digitization", "Records Management", "Physical Inventory Counting", "Inventory Variance Investigation", "Goods-Return Documentation"],
           "portfolio_details": {
             "image_url": "encrypted:assets/c82f1a7d.dat",
             "image_alt": "San Miguel Logistics / SMILSI workplace exterior",
-            "overview": "This project-based role connected billing, liquidation, and logistics documentation. I reviewed customer billing documents, encoded invoice details, prepared and scanned documents, and checked supporting information so that transactions could be traced and discrepancies raised for clarification.",
-            "additional_exposure": "The work also included inventory counting in cold storage and, at times, receiving invoices or helping process returned goods as requested.",
-            "reflection": "This experience showed me how closely logistics records and accounting support each other. I became more familiar with practical document control and the need to keep records organized so another person can follow the transaction later.",
+            "overview": "This project-based role focused on product-related liquidation transactions and logistics documentation for San Miguel customers. I used SAP ERP to review and process transactions, compared transaction details with invoices and delivery documents, and checked supporting records for completeness and discrepancies.",
+            "additional_exposure": "The work also included digitizing transaction documents, physical inventory counts in cold-storage facilities, investigating inventory variances for reasonable explanations, receiving invoices, and checking documentation for goods returns.",
+            "reflection": "This experience strengthened my understanding of how product movement, supporting documents, and transaction processing connect in logistics operations. It also reinforced the importance of investigating discrepancies and maintaining an organized document trail.",
             "takeaways": [
-              "Check the supporting paperwork, not just the invoice total.",
-              "Keep digital and physical records organized for easier review and follow-up.",
-              "Use logistics exposure to strengthen my understanding of how goods movement connects with billing and liquidation."
+              "Verify supporting invoices and delivery documents rather than relying on a transaction total alone.",
+              "Use SAP ERP and organized records to support traceable product-related liquidation processing.",
+              "Follow up on inventory variances and document discrepancies before treating them as resolved."
             ],
             "image_note": "Add an approved company, warehouse, or workplace photo here later. Avoid displaying confidential shipment or customer information."
           }
