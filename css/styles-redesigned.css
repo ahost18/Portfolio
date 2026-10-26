@@ -1,0 +1,313 @@
+/* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* Print Specific Styles for A4 Resume */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm;
+      }
+      body {
+        background: white !important;
+        color: #0f172a !important;
+        font-size: 9.5pt;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .page-break-inside-avoid {
+        break-inside: avoid;
+      }
+      .a4-container {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+    }
+
+/* --------------------------------------------------------------------------
+   Premium interaction layer — motion, tactile feedback, focus and surfaces
+   This layer is intentionally CSS-only so the app logic and data stay intact.
+   -------------------------------------------------------------------------- */
+:root {
+  --motion-fast: 150ms;
+  --motion-base: 220ms;
+  --motion-smooth: cubic-bezier(.2, .75, .25, 1);
+  --motion-enter: cubic-bezier(.16, 1, .3, 1);
+  --surface-shadow: 0 8px 24px rgba(15, 23, 42, .055);
+  --surface-shadow-hover: 0 14px 34px rgba(15, 23, 42, .105);
+}
+
+html { scroll-behavior: smooth; }
+body { -webkit-tap-highlight-color: transparent; }
+button, a, label[for], [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+button, [role="button"] {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity, filter;
+  transition-duration: var(--motion-base);
+  transition-timing-function: var(--motion-smooth);
+}
+button:active:not(:disabled), [role="button"]:active {
+  transform: scale(.975);
+}
+button:disabled { cursor: not-allowed; opacity: .55; }
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, .48);
+  outline-offset: 3px;
+}
+
+/* Give interactive surfaces a consistent, subtle lift without changing layout. */
+.job-card, #dash-metrics-grid > div, #dash-skills-acct > *, #dash-skills-erp > *,
+#dash-skills-office > *, .experience-modal-panel section {
+  transition: transform var(--motion-base) var(--motion-smooth),
+              box-shadow var(--motion-base) var(--motion-smooth),
+              border-color var(--motion-base) var(--motion-smooth),
+              background-color var(--motion-base) var(--motion-smooth);
+}
+#dash-metrics-grid > div { box-shadow: var(--surface-shadow); }
+#dash-metrics-grid > div:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--surface-shadow-hover);
+}
+.job-card:hover { transform: translateY(-2px); }
+.experience-modal-panel section:hover { border-color: #cbd5e1; box-shadow: 0 5px 18px rgba(15, 23, 42, .045); }
+
+/* Inputs feel responsive while keeping the existing visual language. */
+input, textarea, select {
+  transition: border-color var(--motion-fast) ease, box-shadow var(--motion-fast) ease, background-color var(--motion-fast) ease;
+}
+input:focus, textarea:focus, select:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, .12);
+}
+
+/* Smooth view changes; animation only runs when a view becomes visible. */
+#dashboard-view:not(.hidden), #resume-view:not(.hidden) {
+  animation: premium-view-enter 420ms var(--motion-enter) both;
+}
+#editor-modal:not(.hidden), #experience-modal:not(.hidden) {
+  animation: premium-backdrop-enter 220ms ease-out both;
+}
+#editor-modal:not(.hidden) > div,
+#experience-modal:not(.hidden) .experience-modal-panel {
+  animation: premium-panel-enter 360ms var(--motion-enter) both;
+  will-change: transform, opacity;
+}
+
+/* Toasts: refined entrance and exit, with a clear visual hierarchy. */
+#toast-container { gap: 10px; }
+#toast-container > div {
+  max-width: min(390px, calc(100vw - 28px));
+  min-width: 220px;
+  padding: 13px 16px;
+  border-radius: 14px;
+  box-shadow: 0 14px 38px rgba(2, 6, 23, .24), 0 2px 8px rgba(2, 6, 23, .12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transform-origin: bottom right;
+  animation: premium-toast-enter 340ms var(--motion-enter) both;
+}
+#toast-container > div span { line-height: 1.5; }
+
+/* Keep icon and filter interactions crisp, including on touch screens. */
+.filter-tag:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37, 99, 235, .09); }
+.filter-tag:active { transform: scale(.96); }
+header button:hover, header label:hover { filter: brightness(1.08); }
+img { transition: opacity var(--motion-base) ease; }
+
+@keyframes premium-view-enter {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes premium-backdrop-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes premium-panel-enter {
+  from { opacity: 0; transform: translateY(14px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes premium-toast-enter {
+  from { opacity: 0; transform: translateY(10px) scale(.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Avoid forcing motion on people who have requested reduced animation. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* Keep the printable A4 output completely free of interface animation. */
+@media print {
+  html { scroll-behavior: auto; }
+  #dashboard-view, #resume-view, #editor-modal, #experience-modal,
+  #toast-container, button, .job-card, #dash-metrics-grid > div {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Site health diagnostics footer */
+#site-health { margin-top: auto; }
+#site-health-toggle:focus-visible, #site-health button:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, .45);
+  outline-offset: 3px;
+}
+#site-health-checks li { overflow-wrap: anywhere; }
+
+
+/* --------------------------------------------------------------------------
+   Modern flat-light portfolio refresh
+   Visual-only overrides: keeps existing content, data hooks and interactions.
+   -------------------------------------------------------------------------- */
+:root {
+  --ink: #172033;
+  --muted: #64748b;
+  --line: #e5eaf1;
+  --paper: #ffffff;
+  --canvas: #f7f9fc;
+  --accent: #3976d5;
+  --accent-soft: #edf4ff;
+  --mint-soft: #eaf8f2;
+  --surface-shadow: 0 5px 20px rgba(20, 35, 60, .045);
+  --surface-shadow-hover: 0 10px 28px rgba(20, 35, 60, .08);
+}
+html { background: var(--canvas) !important; }
+body { background: var(--canvas) !important; color: var(--ink) !important; }
+header.no-print {
+  background: rgba(255,255,255,.94) !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 2px 12px rgba(20,35,60,.035) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+header.no-print > div { max-width: 1180px; }
+header.no-print .bg-slate-800,
+header.no-print .bg-slate-700 {
+  background: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #475569 !important;
+}
+header.no-print button,
+header.no-print label {
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}
+header.no-print button:hover,
+header.no-print label:hover { filter: none !important; background-color: #e8eef8 !important; color: #1e40af !important; }
+header.no-print #btn-view-dashboard,
+header.no-print #btn-view-resume { color: #475569; }
+header.no-print #btn-view-dashboard.bg-blue-600,
+header.no-print #btn-view-resume.bg-blue-600 {
+  background: #ffffff !important; color: #245fc0 !important;
+  box-shadow: 0 1px 4px rgba(15,23,42,.10) !important;
+}
+header.no-print button[onclick="openEditorModal()"] {
+  background: #2867c7 !important; border-color: #2867c7 !important; color: white !important;
+}
+header.no-print button[onclick="window.print()"] { background: #fff !important; color: #334155 !important; border-color: #dce4ee !important; }
+main { max-width: 1180px !important; padding-top: 2rem !important; padding-bottom: 2.5rem !important; }
+#dashboard-view { gap: 1.8rem !important; }
+.portfolio-hero {
+  color: var(--ink) !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f3f7ff 100%) !important;
+  border: 1px solid #e2eaf7;
+  border-radius: 24px !important;
+  box-shadow: none !important;
+}
+.hero-decoration { background: rgba(92, 145, 225, .10) !important; filter: blur(30px); }
+.portfolio-hero .text-white,
+.portfolio-hero .text-slate-300,
+.portfolio-hero .text-slate-400,
+.portfolio-hero .text-blue-200 { color: #52627a !important; }
+.portfolio-hero h2 { color: #172b4d !important; font-size: clamp(1.8rem, 3.5vw, 2.5rem) !important; letter-spacing: -.045em !important; }
+.portfolio-hero #dash-hero-title { color: #3976d5 !important; font-size: 1rem !important; }
+.portfolio-hero .bg-blue-500\/20 { background: #eaf2ff !important; border-color: #d4e4ff !important; color: #2f66bb !important; }
+.portfolio-hero .border-slate-700\\/60 { border-color: #e1e8f2 !important; }
+.portfolio-hero #dash-target-roles > * { background: #fff !important; color: #4d6383 !important; border: 1px solid #dce6f4 !important; }
+#dash-metrics-grid { display: none !important; }
+.dashboard-content { align-items: start; }
+.dashboard-sidebar > div,
+.dashboard-main > div {
+  background: #fff !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+}
+.dashboard-sidebar h3,
+.dashboard-main h3 { color: #233653 !important; letter-spacing: -.015em; }
+.dashboard-sidebar h3 i,
+.dashboard-main h3 i { color: #3976d5 !important; }
+.dashboard-sidebar h3.border-b,
+.dashboard-main .border-b { border-color: #edf1f6 !important; }
+#dash-skills-acct > *, #dash-skills-erp > *, #dash-skills-office > * {
+  background: #f1f6ff !important; color: #385b8c !important;
+  border: 1px solid #e0eaff !important; border-radius: 7px !important;
+}
+.job-card {
+  border: 1px solid #e7ecf3 !important;
+  border-radius: 15px !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+.job-card:hover { border-color: #cbdaf0 !important; box-shadow: 0 8px 22px rgba(29, 57, 94, .055) !important; }
+#dash-jobs-container { gap: 1rem !important; }
+#dash-education-list > *, #dash-trainings-list > * { border-color: #edf1f6 !important; }
+input, textarea, select { border-color: #dce4ee !important; }
+input:focus, textarea:focus, select:focus { border-color: #80a9e8 !important; box-shadow: 0 0 0 3px rgba(59,130,246,.10) !important; }
+#site-health { background: #fff !important; border-color: var(--line) !important; color: #64748b !important; }
+#site-health-details { background: #f8fafc !important; border-color: var(--line) !important; }
+#site-health-run { background: #2867c7 !important; }
+#site-health-refresh { border-color: #dce4ee !important; background: #fff !important; }
+.editor-panel { background: #fff !important; }
+.editor-header, .editor-footer { background: #fff !important; border-color: #e2e8f0 !important; }
+.editor-header h3 { color: #172033 !important; }
+.editor-header p { color: #64748b !important; }
+.editor-body { background: #f8fafc !important; color: #334155 !important; }
+.editor-body .bg-slate-950,
+.editor-body .bg-slate-900 { background: #fff !important; border-color: #e2e8f0 !important; }
+.editor-body h4 { color: #2867c7 !important; }
+.editor-body label, .editor-body span { color: #64748b; }
+.editor-body input:not([type="checkbox"]),
+.editor-body textarea,
+.editor-body select { background: #fff !important; color: #172033 !important; border-color: #dce4ee !important; }
+#editor-modal { background: rgba(20, 32, 52, .38) !important; }
+@media (max-width: 640px) {
+  main { padding-top: 1rem !important; }
+  .portfolio-hero { border-radius: 18px !important; padding: 1.25rem !important; }
+  .portfolio-hero #dash-contact-box { min-width: 0 !important; }
+  .dashboard-sidebar > div, .dashboard-main > div { border-radius: 15px !important; padding: 1rem !important; }
+}
+@media print {
+  body, html { background: white !important; }
+  .portfolio-hero { background: white !important; border: 0 !important; }
+}
