@@ -279,7 +279,7 @@
         <!-- CANDIDATE DECLARATION (PRINTABLE RESUME ONLY) -->
         <section class="resume-declaration page-break-inside-avoid" aria-label="Candidate declaration">
           <h2>Declaration</h2>
-          <p>I declare that the information provided in this résumé is true and accurate to the best of my knowledge.</p>
+          <p>I declare that the information provided in this resume is true and accurate to the best of my knowledge.</p>
           <div class="resume-declaration-signoff">
             <span>Mark Angelo Francisco Lopega</span>
             <span>Signature / Date: ______________________________</span>
@@ -468,19 +468,15 @@
       <!-- Modal Footer -->
       <div class="editor-footer p-4 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center space-x-2">
-          <!-- Download JSON -->
           <button onclick="downloadJsonFile()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition-colors border border-slate-700">
             <i data-lucide="download" class="w-3.5 h-3.5 text-blue-400"></i>
             <span>Download JSON</span>
           </button>
-          
-          <!-- Reset to Default -->
           <button onclick="resetToDefaultData()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-rose-400 rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition-colors border border-slate-700">
             <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
             <span>Reset Data</span>
           </button>
         </div>
-
         <div class="flex items-center space-x-2">
           <button onclick="closeEditorModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition-colors">
             Cancel
@@ -494,10 +490,7 @@
 
     </div>
   </div>
-
-  <!-- JAVASCRIPT CONTROLLERS & DATA LOGIC -->
-
-  <!-- Footer -->
+  
   <footer id="site-health" class="no-print border-t border-slate-200 bg-white/95 text-slate-600">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
       <button id="site-health-toggle" type="button" aria-expanded="false" aria-controls="site-health-details"
@@ -521,7 +514,7 @@
     </div>
   </footer>
   <!--
-  Deployment no. 0061 by Mark Angelo F. Lopega
+  Deployment no. 0067 by Mark Angelo F. Lopega
   Reason: Force Cache Purge due to HTML mismatch
   -->
 
@@ -529,7 +522,6 @@
   <script src="js/app.js"></script>
   <script src="js/site-health.js"></script>
   <script>
-    // Public visitors see the portfolio without the owner controls by default.
     // Add ?nav=1 (or ?showNav=1) to reveal the navigation and editor controls.
     (function () {
       const params = new URLSearchParams(window.location.search);
