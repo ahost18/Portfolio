@@ -44,15 +44,18 @@
 <body class="font-sans text-slate-800 antialiased h-full flex flex-col bg-slate-100 selection:bg-blue-500 selection:text-white">
 
   <!-- TOP NAVBAR (NO-PRINT) -->
-  <header class="no-print sticky top-0 z-40 bg-slate-900 text-white border-b border-slate-800 shadow-xl">
+  <header class="no-print sticky top-0 z-40 bg-white/95 text-slate-800 border-b border-slate-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <div></div>
+      <div class="flex items-center justify-between min-h-16 py-2 gap-4">
+        <a href="#" onclick="switchView('dashboard'); return false;" class="site-wordmark flex items-center gap-3 no-underline" aria-label="Mark Lopega portfolio home">
+          <span class="wordmark-initials" aria-hidden="true">ML</span>
+          <span class="wordmark-copy"><strong>Mark Lopega</strong><small>Portfolio &amp; Resume</small></span>
+        </a>
 
         <!-- Desktop Navigation Actions -->
         <div class="flex items-center space-x-2 sm:space-x-3">
           <!-- View Mode Switcher -->
-          <div class="bg-slate-800 p-1 rounded-xl flex items-center border border-slate-700">
+          <div class="nav-switcher p-1 rounded-xl flex items-center border border-slate-200 bg-slate-100">
             <button id="btn-view-dashboard" onclick="switchView('dashboard')" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all bg-blue-600 text-white shadow-sm">
               <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
               <span class="hidden md:inline">Dashboard</span>
@@ -98,8 +101,8 @@
     <div id="dashboard-view" class="space-y-6">
 
       <!-- BANNER & CONTACT SUMMARY -->
-      <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-indigo-950 rounded-2xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
-        <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-blue-600/10 blur-3xl pointer-events-none"></div>
+      <div class="portfolio-hero rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+        <div class="hero-decoration absolute -right-10 -bottom-10 w-64 h-64 rounded-full pointer-events-none"></div>
 
         <div class="relative z-10 flex flex-col lg:flex-row justify-between lg:items-center gap-6">
           
@@ -133,33 +136,19 @@
       </div>
 
       <!-- DYNAMIC METRICS CARDS -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="dash-metrics-grid"></div>
+      <div id="dash-metrics-grid" class="hidden" aria-hidden="true"></div>
 
       <!-- MAIN CONTENT DASHBOARD GRID -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="dashboard-content grid grid-cols-1 lg:grid-cols-12 gap-7">
 
         <!-- LEFT COLUMN: Filters & Skills (4 cols) -->
-        <div class="lg:col-span-4 space-y-6">
+        <div class="dashboard-sidebar lg:col-span-4 space-y-6">
 
-          <!-- INTERACTIVE SKILL FILTER SEARCH -->
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-            <div class="flex items-center justify-between">
-              <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2">
-                <i data-lucide="filter" class="w-4 h-4 text-blue-600"></i>
-                Filter Work Experience
-              </h3>
-              <button onclick="resetSkillFilter()" id="btn-reset-filter" class="hidden text-xs text-blue-600 font-semibold hover:underline">Reset</button>
-            </div>
-            
-            <div class="relative">
-              <input type="text" id="skill-search" onkeyup="filterBySearch()" placeholder="Type skill or ERP (e.g., SAP, QAD, GIT)..." class="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all">
-              <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
-            </div>
-
-            <div>
-              <span class="text-xs font-medium text-slate-400 block mb-2">Quick Filter Badges:</span>
-              <div id="dash-quick-tags" class="flex flex-wrap gap-1.5"></div>
-            </div>
+          <!-- Filter interface removed from the redesigned dashboard. Hidden legacy hooks remain for app.js compatibility. -->
+          <div class="hidden" aria-hidden="true">
+            <input type="text" id="skill-search" onkeyup="filterBySearch()">
+            <button onclick="resetSkillFilter()" id="btn-reset-filter"></button>
+            <div id="dash-quick-tags"></div>
           </div>
 
           <!-- SKILLS & COMPETENCIES CARD -->
@@ -211,7 +200,7 @@
         </div>
 
         <!-- RIGHT COLUMN: Work Experience Timeline (8 cols) -->
-        <div class="lg:col-span-8 space-y-6">
+        <div class="dashboard-main lg:col-span-8 space-y-6">
           <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6">
             <div class="flex items-center justify-between border-b border-slate-100 pb-4">
               <div>
@@ -257,6 +246,12 @@
           <p id="res-summary" class="text-[9.5pt] text-slate-700 leading-relaxed"></p>
         </section>
 
+        <!-- EDUCATION -->
+        <section class="space-y-1 page-break-inside-avoid">
+          <h2 class="text-[10pt] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">Education & Academic Achievements</h2>
+          <div id="res-edu-container" class="space-y-1.5"></div>
+        </section>
+
         <!-- TECHNICAL SKILLS MATRIX -->
         <section class="space-y-1.5">
           <h2 class="text-[10pt] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">Technical Skills & Enterprise Systems</h2>
@@ -269,12 +264,6 @@
           <div id="res-jobs-container" class="space-y-3"></div>
         </section>
 
-        <!-- EDUCATION -->
-        <section class="space-y-1 page-break-inside-avoid">
-          <h2 class="text-[10pt] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">Education & Academic Achievements</h2>
-          <div id="res-edu-container" class="space-y-1.5"></div>
-        </section>
-
         <!-- TRAININGS & ORGANIZATIONS -->
         <section class="grid grid-cols-2 gap-4 pt-1 page-break-inside-avoid">
           <div>
@@ -284,6 +273,16 @@
           <div>
             <h2 class="text-[9.5pt] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-300 pb-0.5">Affiliations & Highlights</h2>
             <div id="res-orgs-container" class="mt-1"></div>
+          </div>
+        </section>
+
+        <!-- CANDIDATE DECLARATION (PRINTABLE RESUME ONLY) -->
+        <section class="resume-declaration page-break-inside-avoid" aria-label="Candidate declaration">
+          <h2>Declaration</h2>
+          <p>I declare that the information provided in this résumé is true and accurate to the best of my knowledge.</p>
+          <div class="resume-declaration-signoff">
+            <span>Mark Angelo Francisco Lopega</span>
+            <span>Signature / Date: ______________________________</span>
           </div>
         </section>
 
@@ -315,10 +314,10 @@
   <!-- MODAL: DUAL-TAB EDITOR (VISUAL FORM & RAW JSON CODE EDITOR)        -->
   <!-- ================================================================= -->
   <div id="editor-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-6 hidden no-print">
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+    <div class="editor-panel bg-white border border-slate-200 rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
       
       <!-- Modal Header & Tab Navigation -->
-      <div class="p-4 bg-slate-900 border-b border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <div class="editor-header p-4 bg-white border-b border-slate-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div class="flex items-center space-x-3">
           <div class="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center justify-center">
             <i data-lucide="sliders" class="w-4 h-4"></i>
@@ -347,7 +346,7 @@
       </div>
 
       <!-- Modal Body (Scrollable) -->
-      <div class="p-6 overflow-y-auto flex-grow space-y-6 bg-slate-900 text-slate-200">
+      <div class="editor-body p-6 overflow-y-auto flex-grow space-y-6 bg-slate-50 text-slate-700">
         
         <!-- TAB 1: VISUAL FORM EDITOR -->
         <div id="editor-tab-visual" class="space-y-6">
@@ -467,7 +466,7 @@
       </div>
 
       <!-- Modal Footer -->
-      <div class="p-4 bg-slate-950 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+      <div class="editor-footer p-4 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center space-x-2">
           <!-- Download JSON -->
           <button onclick="downloadJsonFile()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition-colors border border-slate-700">
@@ -529,5 +528,15 @@
   <script src="js/resume-data.js"></script>
   <script src="js/app.js"></script>
   <script src="js/site-health.js"></script>
+  <script>
+    // Public visitors see the portfolio without the owner controls by default.
+    // Add ?nav=1 (or ?showNav=1) to reveal the navigation and editor controls.
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const showNav = params.get('nav') === '1' || params.get('showNav') === '1';
+      document.documentElement.classList.toggle('nav-visible', showNav);
+      document.documentElement.classList.toggle('nav-hidden', !showNav);
+    })();
+  </script>
 </body>
 </html>
