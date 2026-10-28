@@ -255,6 +255,11 @@
     async function openExperienceModal(index) {
       const job = (currentData.work_experience || [])[index];
       if (!job) return;
+      if (typeof window.trackPortfolioEvent === 'function') {
+        const experienceId = String(job.company || job.position || 'experience')
+          .toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 70);
+        window.trackPortfolioEvent('experience_open', { detail: experienceId });
+      }
       const details = job.portfolio_details || {};
       const title = job.position || 'Work Experience';
       const company = job.company || 'Company not specified';
