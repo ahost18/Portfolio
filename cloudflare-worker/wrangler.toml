@@ -1,0 +1,11 @@
+name = "lopegaworks-portfolio-analytics"
+main = "src/index.js"
+compatibility_date = "2026-10-28"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "lopegaworks-analytics"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+# After creating the Worker, bind stats.lopegaworks.com as a custom domain.
+# Configure Cloudflare Access to protect /dashboard* and /api/* on that hostname.
