@@ -14,7 +14,7 @@ const defaultResumeData = {
     "photo_url": "encrypted:assets/a419d0e6.dat"
   },
   "professional_summary": {
-    "title": "Accounting and Finance Professional",
+    "title": "Accounting and Finance",
     "summary": "BSBA Major in Financial Management graduate with hands-on experience in accounts payable, general ledger entries, raw material billings, invoice verification, document control, and financial transaction processing. Experienced in using QAD ERP, SAP, and legacy general ledger systems, with exposure to Goods in Transit accounting, freight transactions, expanded withholding tax, and accounting adjustments. Seeking to become more skilled and reliable in area of finance, To become more competent while also contributing to the growth of the company. ",
     "target_positions": [
       "Accounts Payable Associate",
