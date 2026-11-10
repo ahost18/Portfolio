@@ -488,21 +488,22 @@
       const resume = document.getElementById('resume-view');
       const btnDash = document.getElementById('btn-view-dashboard');
       const btnRes = document.getElementById('btn-view-resume');
+      if (!dashboard || !resume || !btnDash || !btnRes) return;
 
-      if (mode === 'dashboard') {
-        dashboard.classList.remove('hidden');
-        resume.classList.add('hidden');
+      const showResume = mode === 'resume';
+      dashboard.classList.toggle('hidden', showResume);
+      resume.classList.toggle('hidden', !showResume);
 
-        btnDash.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all bg-blue-600 text-white shadow-sm";
-        btnRes.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all text-slate-300 hover:text-white";
-      } else {
-        dashboard.classList.add('hidden');
-        resume.classList.remove('hidden');
-
-        btnRes.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all bg-blue-600 text-white shadow-sm";
-        btnDash.className = "px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all text-slate-300 hover:text-white";
-      }
+      const active = 'px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all bg-blue-600 text-white shadow-sm';
+      const inactive = 'px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all text-slate-600 hover:text-slate-900';
+      btnDash.className = showResume ? inactive : active;
+      btnRes.className = showResume ? active : inactive;
+      btnDash.setAttribute('aria-pressed', String(!showResume));
+      btnRes.setAttribute('aria-pressed', String(showResume));
     }
+
+    // Inline HTML handlers resolve functions on window; expose explicitly for reliable switching.
+    window.switchView = switchView;
 
     // SEARCH & FILTER LOGIC
     function applySkillFilter(keyword) {
